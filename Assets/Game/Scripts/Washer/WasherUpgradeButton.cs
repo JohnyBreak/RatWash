@@ -2,7 +2,7 @@ using GameOn.TagMaskField;
 using UnityEngine;
 using Zenject;
 
-public class WasherUpgradeButton : MonoBehaviour
+public class WasherUpgradeButton : MonoBehaviour, IGroundButton
 {
     [SerializeField] private TagMask _playerTag;
     //[SerializeField] 
@@ -30,7 +30,12 @@ public class WasherUpgradeButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        HandlePressButton(other);
+    }
+
+    public void HandlePressButton(Collider other)
+    {
         if (!_playerTag.Contains(other.gameObject.tag)) return;
-        _washerUpgrader.UpgradeWasher(_index);
+        _washerUpgrader.Upgrade(_index);
     }
 }

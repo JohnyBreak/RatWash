@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -13,10 +13,10 @@ public class WasherUpgrader : MonoBehaviour
 
     private void Awake()
     {
-        InitUpgradeButton();
+        InitUpgradeButtons();
 
         _upgradeLvl = PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
-        SetUpgradeButton();
+        SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);
     }
 
@@ -27,7 +27,7 @@ public class WasherUpgrader : MonoBehaviour
         _wallet = wallet;
     }
 
-    private void InitUpgradeButton()
+    public void InitUpgradeButtons()
     {
         foreach (var button in _upgradeButtons)
         {
@@ -35,7 +35,7 @@ public class WasherUpgrader : MonoBehaviour
         }
     }
 
-    private void SetUpgradeButton()
+    public void SetUpgradeButtons()
     {
         foreach (var button in _upgradeButtons)
         {
@@ -47,14 +47,14 @@ public class WasherUpgrader : MonoBehaviour
         _upgradeButtons[_upgradeLvl].gameObject.SetActive(true);
     }
 
-    public void UpgradeWasher(int buttonIndex)
+    public void Upgrade(int buttonIndex)
     {
         if (_wallet.RemoveMoney(_upgradeButtons[buttonIndex].GetPrice()) == false) return;
 
         _upgradeLvl = ((_upgradeLvl + 1) < _washer.Settings.Pause.Length) ? _upgradeLvl + 1 : _washer.Settings.Pause.Length - 1;
         PlayerPrefs.SetInt(_washerUpgradeLvlString, _upgradeLvl);
         Debug.LogError($"you upgraded washer to lvl {_upgradeLvl}");
-        SetUpgradeButton();
+        SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);
     }
 

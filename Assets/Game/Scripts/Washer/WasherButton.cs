@@ -1,10 +1,8 @@
 using GameOn.TagMaskField;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class WasherButton : MonoBehaviour
+public class WasherButton : MonoBehaviour, IGroundButton
 {
     [SerializeField] private TagMask _playerTag;
 
@@ -16,8 +14,12 @@ public class WasherButton : MonoBehaviour
         _washer = washer;
     }
 
-
     private void OnTriggerEnter(Collider other)
+    {
+        HandlePressButton(other);
+    }
+
+    public void HandlePressButton(Collider other)
     {
         if (!_playerTag.Contains(other.gameObject.tag)) return;
         _washer.StartWash();
