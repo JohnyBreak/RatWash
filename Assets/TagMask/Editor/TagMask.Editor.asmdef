@@ -1,0 +1,18 @@
+{
+    "name": "TagMask.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6ed15fb6d204726429614cfcf9fa2436"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "com.gameon.tagmask",
+  "version": "1.0.0",
+  "displayName": "Tag Mask",
+  "description": "Allows compare tags by mask like with layer masks",
+  "unity": "2018.1",
+  "unityRelease": "1f1",
+  "dependencies": {},
+ "keywords": [
+    "gameon",
+    "utils",
+    "tag",
+	"mask"
+  ],
+  "author": {
+    "name": "GameOnProduction Team",
+    "email": "stanislav.bukotkin@gameonproduction.com",
+    "url": "https://gameonproduction.com"
+  }
+}
