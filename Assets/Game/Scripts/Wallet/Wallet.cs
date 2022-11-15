@@ -4,7 +4,7 @@ using System;
 public class Wallet : MonoBehaviour
 {
     public Action<int> AmountChangeEvent;
-
+    [SerializeField] private int _startAmount;
     private int _money;
     private string _moneyString = "WalletAmount";
 

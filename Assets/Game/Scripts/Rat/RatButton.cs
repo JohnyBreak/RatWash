@@ -20,6 +20,16 @@ public class RatButton : MonoBehaviour, IGroundButton
     {
         return _upgradePrice;
     }
+    public int GetIndex()
+    {
+        return _index;
+    }
+
+    private void Awake()
+    {
+        _spawner = GetComponentInParent<Spawner>();
+
+    }
 
     [Inject]
     private void Construct(SpawnerUpgrader upgrader)
@@ -29,7 +39,6 @@ public class RatButton : MonoBehaviour, IGroundButton
 
     public void Init(int index)
     {
-        _spawner = GetComponentInParent<Spawner>();
         _index = index;
     }
 
@@ -41,6 +50,11 @@ public class RatButton : MonoBehaviour, IGroundButton
     public void HandlePressButton(Collider other)
     {
         if (!_playerTag.Contains(other.gameObject.tag)) return;
-        _spawnerUpgrader.Upgrade(_spawner.Settings.Type);
+        _spawnerUpgrader.Upgrade(_spawner);
+    }
+
+    public void DisableButton()
+    {
+        gameObject.SetActive(false);
     }
 }

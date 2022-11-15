@@ -62,8 +62,14 @@ public class SpawnerUpgrader : MonoBehaviour
         //_upgradeButtons[_upgradeLvl].gameObject.SetActive(true);
     }
 
-    public void Upgrade(RatSettings.RatType type)
+    public void Upgrade(Spawner spawner)
     {
+        if (_wallet.RemoveMoney(spawner.Button.GetPrice()) == false) return;
+
+        PlayerPrefs.SetInt(spawner.Settings.Type.ToString() + spawner.Button.GetIndex(), 1);
+
+        spawner.StartSpawn(true);
+
         /*
         List<RatUpgrade> list = _ratSpawners.Where(l => l.RatType == type).ToList();
 
@@ -93,6 +99,11 @@ public class SpawnerUpgrader : MonoBehaviour
         //Debug.LogError($"you upgraded washer to lvl {_upgradeLvl}");
         //SetUpgradeButtons();
         //_washer.SetUpgrades(_upgradeLvl);
+    }
+
+    public int CheckSpawnerActive(RatSettings.RatType type, int index) 
+    {
+        return PlayerPrefs.GetInt(type.ToString() + index, 0);
     }
 
     [System.Serializable]

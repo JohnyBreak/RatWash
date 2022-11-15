@@ -12,22 +12,44 @@ public class Spawner : MonoBehaviour
     private RatButton _button; 
 
     private Coroutine _spawnRoutine;
-
+    private SpawnerUpgrader _upgrader;
     private WasherStorage _washer;
+    private bool _activated;
 
     public RatSettings Settings => _settings;
     public RatButton Button => _button;
 
     [Inject]
-    private void Constructor(WasherStorage washer)
+    private void Constructor(WasherStorage washer, SpawnerUpgrader upgrader)
     {
-        _washer = washer;
+        _upgrader = upgrader;
+           _washer = washer;
     }
 
     private void Start()
     {
-        _spawnRoutine = StartCoroutine(SpawnRats());
+        CheckActivity();
+        StartSpawn();
+
         //SpawnRat(_settings);
+    }
+
+    public void StartSpawn(bool need = false) 
+    {
+        CheckActivity();
+
+       if(need)_activated = need;
+
+        if (!_activated) return;
+
+        _button.DisableButton();
+
+        _spawnRoutine = StartCoroutine(SpawnRats());
+    }
+
+    private void CheckActivity() 
+    {
+        _activated = (_upgrader.CheckSpawnerActive(_settings.Type, _button.GetIndex()) == 0) ? false : true;
     }
 
     private IEnumerator SpawnRats() 
@@ -39,7 +61,6 @@ public class Spawner : MonoBehaviour
             yield return null;
 
             SpawnRat(_settings);
-
 
             yield return wait;
         }

@@ -31,7 +31,6 @@ public class WasherStorage : MonoBehaviour
 
     public void SetUpgrades(int lvl) 
     {
-        Debug.LogError(lvl);
         _pause = _settings.Pause[lvl]; 
         _maxActiveDropperCount = _settings.MaxDropperCount[lvl];
     }
