@@ -3,7 +3,10 @@ using System;
 
 public class Wallet : MonoBehaviour
 {
+
+    public Action ButtonPushEvent;
     public Action<int> AmountChangeEvent;
+
     [SerializeField] private int _startAmount;
     private int _money;
     private string _moneyString = "WalletAmount";
@@ -35,7 +38,9 @@ public class Wallet : MonoBehaviour
     {
         if (amount > _money) return false;
 
-        _money -= amount;
+        ButtonPushEvent?.Invoke();
+
+    _money -= amount;
         AmountChangeEvent?.Invoke(_money);
         return true;
     }
