@@ -1,3 +1,4 @@
+using NTC.Global.Pool;
 using UnityEngine;
 
 public class Rat : MonoBehaviour
@@ -18,7 +19,8 @@ public class Rat : MonoBehaviour
 
     public void Wash() 
     {
-        Destroy(gameObject);
+        NightPool.Despawn(this);
+        //Destroy(gameObject);
         //gameObject.SetActive(false);
         //_spawner.ReturnRat(this);
     }

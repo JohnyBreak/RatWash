@@ -2491,6 +2491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fd4dc46f4d47a4b94defd72270d727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _joystickImg: {fileID: 0}
 --- !u!4 &807181001
 Transform:
   m_ObjectHideFlags: 0
