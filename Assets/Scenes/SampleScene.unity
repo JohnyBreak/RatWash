@@ -5596,6 +5596,7 @@ MonoBehaviour:
     MoneyAmount: 0
     WasherUpgradeIndex: 0
     RatList: []
+    SpawnerDataList: []
 --- !u!4 &1697896705
 Transform:
   m_ObjectHideFlags: 0

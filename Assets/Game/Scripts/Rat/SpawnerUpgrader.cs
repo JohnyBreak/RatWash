@@ -10,33 +10,19 @@ public class SpawnerUpgrader : MonoBehaviour
 
 
     [SerializeField] private List<RatUpgrade> _ratSpawners;
-    private Dictionary<RatSettings.RatType, int> _spawnerButtonsUpgradeDictionary;
+    private List<SpawnerData> _spawnerDataList;
     private Wallet _wallet;
     private SaveManager _saveManager;
 
 
     private void Awake()
     {
-        //Debug.LogError("PlayerPrefs");
-        if (_saveManager.SaveData.SpawnerButtonsUpgradeDictionary == null)
+        if (_saveManager.SaveData.SpawnerDataList == null)
         {
-            //RatSettings.RatType status;
+            _saveManager.SaveData.SpawnerDataList = new List<SpawnerData>();
 
-            _saveManager.SaveData.SpawnerButtonsUpgradeDictionary = new Dictionary<RatSettings.RatType, int>();
-            //foreach (var item in Enum.GetNames(typeof(RatSettings.RatType)))
-            //{
-            //    Enum.TryParse(item, out status);
-            //    _saveManager.SaveData.SpawnerButtonsUpgradeDictionary.Add(status, 0);
-            //}
-            //_saveManager.Save();
         }
-        _spawnerButtonsUpgradeDictionary = _saveManager.SaveData.SpawnerButtonsUpgradeDictionary;
-        //InitUpgradeButtons();
-
-
-        //_upgradeLvl = PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
-        //SetUpgradeButtons();
-        // _washer.SetUpgrades(_upgradeLvl);
+        _spawnerDataList = _saveManager.SaveData.SpawnerDataList;
     }
 
     [Inject]
@@ -106,29 +92,23 @@ public class SpawnerUpgrader : MonoBehaviour
     {
         if (_wallet.RemoveMoney(spawner.Button.GetPrice()) == false) return;
 
-        Debug.LogError("PlayerPrefs");
-        //PlayerPrefs.SetInt(spawner.Settings.Type.ToString() + spawner.Button.GetIndex(), 1);
-
-        _spawnerButtonsUpgradeDictionary.Add(spawner.Settings.Type, index);
-        _saveManager.SaveData.SpawnerButtonsUpgradeDictionary = _spawnerButtonsUpgradeDictionary;
+        _spawnerDataList.Add(new SpawnerData(spawner.Settings.Type, index));
+        _saveManager.SaveData.SpawnerDataList = _spawnerDataList;
         _saveManager.Save();
+
         spawner.StartSpawn(true);
     }
 
     public bool CheckSpawnerActive(RatSettings.RatType type, int index)
     {
-        var tempListByType = _spawnerButtonsUpgradeDictionary.Where(x => x.Key == type && x.Value == index);
-        if (tempListByType == null) 
+        foreach (var spawner in _spawnerDataList)
         {
-            return true;
+            if (spawner.RatType == type && spawner.Index == index)
+            {
+                return true;
+            }
         }
-
         return false;
-
-        //var temp = _saveManager.SaveData.SpawnerButtonsUpgradeDictionary.Where(x => x.Key == type).First();
-        //Debug.LogError(temp.Key + " " + temp.Value);
-
-        //return temp.Value; //PlayerPrefs.GetInt(type.ToString() + index, 0);
     }
 
     [System.Serializable]

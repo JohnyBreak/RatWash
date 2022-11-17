@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class WasherStorage : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class WasherStorage : MonoBehaviour
     [SerializeField] private List<Transform> _droppersList;
     //[SerializeField] private List<WasherDropper> _droppers;
 
+    private SaveManager _saveManager;
     private List<Rat> _ratList;
     private List<Rat> _ratListToWash;
 
@@ -16,6 +18,12 @@ public class WasherStorage : MonoBehaviour
     public WasherSettings Settings => _settings;
 
     private Coroutine _washRoutine;
+
+    [Inject]
+    private void Construct(SaveManager saveManager)
+    {
+        _saveManager = saveManager;
+    }
 
     private void Awake()
     {
@@ -29,8 +37,10 @@ public class WasherStorage : MonoBehaviour
         _ratListToWash = new List<Rat>();
     }
 
-    public void SetUpgrades(int lvl) 
+    public void SetUpgrades(int lvl)
     {
+        _saveManager.SaveData.WasherUpgradeIndex = lvl;
+        _saveManager.Save();
         Debug.LogError(lvl);
         _pause = _settings.Pause[lvl]; 
         _maxActiveDropperCount = _settings.MaxDropperCount[lvl];

@@ -15,8 +15,9 @@ public class WasherUpgrader : MonoBehaviour
     private void Awake()
     {
         InitUpgradeButtons();
-
+        _saveManager.Load();
         _upgradeLvl = _saveManager.SaveData.WasherUpgradeIndex;//PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
+        Debug.LogError("ddddd " + _saveManager.SaveData.WasherUpgradeIndex);
         SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);
     }
@@ -55,8 +56,7 @@ public class WasherUpgrader : MonoBehaviour
 
         _upgradeLvl = ((_upgradeLvl + 1) < _washer.Settings.Pause.Length) ? _upgradeLvl + 1 : _washer.Settings.Pause.Length - 1;
         //PlayerPrefs.SetInt(_washerUpgradeLvlString, _upgradeLvl);
-        _saveManager.SaveData.WasherUpgradeIndex = _upgradeLvl;
-        _saveManager.Save();
+
         Debug.LogError($"you upgraded washer to lvl {_upgradeLvl}");
         SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);

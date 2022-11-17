@@ -49,7 +49,6 @@ public class Spawner : MonoBehaviour
 
     private void CheckActivity() 
     {
-        Debug.LogError(gameObject.name);
         _activated = _upgrader.CheckSpawnerActive(_settings.Type, _button.GetIndex());
     }
 
