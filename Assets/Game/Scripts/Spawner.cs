@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using NTC.Global.Pool;
 using UnityEngine;
 using Zenject;
 
@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnRat(RatSettings ratSettings) 
     {
-        Rat rat = Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
+           Rat rat = NightPool.Spawn(ratSettings.Rat, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
 
         rat.SetWasher(_washer);
         rat.SetSpawner(this);
