@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Zenject;
 
 public class Wallet : MonoBehaviour
 {
@@ -8,12 +9,21 @@ public class Wallet : MonoBehaviour
     public Action<int> AmountChangeEvent;
 
     [SerializeField] private int _startAmount;
+    private SaveManager _saveManager;
     private int _money;
     private string _moneyString = "WalletAmount";
 
+    [Inject]
+    private void Construct(SaveManager saveManager)
+    {
+        _saveManager = saveManager;
+    }
+
     private void Awake()
     {
-        SetMoney(PlayerPrefs.GetInt(_moneyString, 0));
+        //   SetMoney(PlayerPrefs.GetInt(_moneyString, 0));
+        _saveManager.LoadSave();
+        SetMoney(_saveManager.Save.MoneyAmount);
         AmountChangeEvent += SaveMoney;
     }
 
@@ -40,14 +50,16 @@ public class Wallet : MonoBehaviour
 
         ButtonPushEvent?.Invoke();
 
-    _money -= amount;
+        _money -= amount;
         AmountChangeEvent?.Invoke(_money);
         return true;
     }
 
     private void SaveMoney(int amount)
     {
-        PlayerPrefs.SetInt(_moneyString, amount);
+        _saveManager.Save.MoneyAmount = amount;
+        _saveManager.SaveData();
+        //PlayerPrefs.SetInt(_moneyString, amount);
     }
 
 }
