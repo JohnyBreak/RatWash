@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        CheckActivity();
+        //CheckActivity();
         StartSpawn();
 
         //SpawnRat(_settings);
@@ -49,10 +49,11 @@ public class Spawner : MonoBehaviour
 
     private void CheckActivity() 
     {
-        _activated = (_upgrader.CheckSpawnerActive(_settings.Type, _button.GetIndex()) == 0) ? false : true;
+        Debug.LogError(gameObject.name);
+        _activated = _upgrader.CheckSpawnerActive(_settings.Type, _button.GetIndex());
     }
 
-    private IEnumerator SpawnRats() 
+    private IEnumerator SpawnRats()
     {
         var wait = new WaitForSeconds(_cooldown);
 

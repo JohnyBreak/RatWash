@@ -7,9 +7,9 @@ public class WasherSettings : ScriptableObject
 {
     [SerializeField] private float[] _pause;
     [SerializeField] private int[] _maxActiveDropperCount;
-    [SerializeField, Min(0)] private int _upgradeLvl;
+    //[SerializeField, Min(0)] private int _upgradeLvl;
 
     public int[] MaxDropperCount => _maxActiveDropperCount;
     public float[] Pause => _pause;
-    public int UpgradeLvl => _upgradeLvl;
+    //public int UpgradeLvl => _upgradeLvl;
 }

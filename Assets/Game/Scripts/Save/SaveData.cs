@@ -6,5 +6,11 @@ using UnityEngine;
 public class SaveData
 {
     public int MoneyAmount;
+    public int WasherUpgradeIndex;
     public List<Rat> RatList;
+
+
+
+    public Dictionary<RatSettings.RatType, int> SpawnerButtonsUpgradeDictionary;
+
 }

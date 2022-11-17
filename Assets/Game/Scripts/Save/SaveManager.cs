@@ -4,40 +4,39 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    public SaveData Save;
-
+    [HideInInspector] public SaveData SaveData;
 
     private void Awake()
     {
-        LoadSave();
+        Load();
     }
 
-    public void LoadSave() 
+    public void Load() 
     {
-        Save = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Save.save");
-        if (Save == null) Save = new SaveData();
+        SaveData = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Save.save");
+        if (SaveData == null) SaveData = new SaveData();
     }
 
-    public void SaveData() 
+    public void Save() 
     {
-        SerializationManager.Save(Save);
+        SerializationManager.Save(SaveData);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SaveData();
+            Save();
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadSave();
+            Load();
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.LogError(Save.MoneyAmount);
+            Debug.LogError(SaveData.MoneyAmount);
         }
     }
 }

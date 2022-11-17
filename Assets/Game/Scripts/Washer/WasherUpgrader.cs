@@ -8,6 +8,7 @@ public class WasherUpgrader : MonoBehaviour
     [SerializeField] private List<WasherUpgradeButton> _upgradeButtons;
     private WasherStorage _washer;
     private Wallet _wallet;
+    private SaveManager _saveManager;
     private int _upgradeLvl;
     private string _washerUpgradeLvlString = "washerUpgradeIndex";
 
@@ -15,16 +16,17 @@ public class WasherUpgrader : MonoBehaviour
     {
         InitUpgradeButtons();
 
-        _upgradeLvl = PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
+        _upgradeLvl = _saveManager.SaveData.WasherUpgradeIndex;//PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
         SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);
     }
 
     [Inject]
-    private void Construct(WasherStorage washer, Wallet wallet)
+    private void Construct(WasherStorage washer, Wallet wallet, SaveManager saveManager)
     {
         _washer = washer;
         _wallet = wallet;
+        _saveManager = saveManager;
     }
 
     public void InitUpgradeButtons()
@@ -52,7 +54,9 @@ public class WasherUpgrader : MonoBehaviour
         if (_wallet.RemoveMoney(_upgradeButtons[buttonIndex].GetPrice()) == false) return;
 
         _upgradeLvl = ((_upgradeLvl + 1) < _washer.Settings.Pause.Length) ? _upgradeLvl + 1 : _washer.Settings.Pause.Length - 1;
-        PlayerPrefs.SetInt(_washerUpgradeLvlString, _upgradeLvl);
+        //PlayerPrefs.SetInt(_washerUpgradeLvlString, _upgradeLvl);
+        _saveManager.SaveData.WasherUpgradeIndex = _upgradeLvl;
+        _saveManager.Save();
         Debug.LogError($"you upgraded washer to lvl {_upgradeLvl}");
         SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);

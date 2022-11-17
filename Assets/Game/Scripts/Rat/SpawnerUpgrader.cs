@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 using Zenject;
 
 public class SpawnerUpgrader : MonoBehaviour
@@ -9,101 +10,125 @@ public class SpawnerUpgrader : MonoBehaviour
 
 
     [SerializeField] private List<RatUpgrade> _ratSpawners;
-
-    private WasherStorage _washer;
+    private Dictionary<RatSettings.RatType, int> _spawnerButtonsUpgradeDictionary;
     private Wallet _wallet;
-    private int _upgradeLvl;
-    private string _washerUpgradeLvlString = "washerUpgradeIndex";
-
+    private SaveManager _saveManager;
 
 
     private void Awake()
     {
-        InitUpgradeButtons();
+        //Debug.LogError("PlayerPrefs");
+        if (_saveManager.SaveData.SpawnerButtonsUpgradeDictionary == null)
+        {
+            //RatSettings.RatType status;
 
-        _upgradeLvl = PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
-        SetUpgradeButtons();
-        _washer.SetUpgrades(_upgradeLvl);
+            _saveManager.SaveData.SpawnerButtonsUpgradeDictionary = new Dictionary<RatSettings.RatType, int>();
+            //foreach (var item in Enum.GetNames(typeof(RatSettings.RatType)))
+            //{
+            //    Enum.TryParse(item, out status);
+            //    _saveManager.SaveData.SpawnerButtonsUpgradeDictionary.Add(status, 0);
+            //}
+            //_saveManager.Save();
+        }
+        _spawnerButtonsUpgradeDictionary = _saveManager.SaveData.SpawnerButtonsUpgradeDictionary;
+        //InitUpgradeButtons();
+
+
+        //_upgradeLvl = PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
+        //SetUpgradeButtons();
+        // _washer.SetUpgrades(_upgradeLvl);
     }
 
     [Inject]
-    private void Construct(WasherStorage washer, Wallet wallet)
+    private void Construct(Wallet wallet, SaveManager saveManager)
     {
-        _washer = washer;
         _wallet = wallet;
+        _saveManager = saveManager;
     }
 
-    public void InitUpgradeButtons()
-    {
-        int tempIndex = 0;
-        foreach (var button in _ratSpawners)
-        {
-            var upgradeIndex = PlayerPrefs.GetInt(button.RatType.ToString(), 0);
+    //public void InitUpgradeButtons()
+    //{
+    //    //int tempIndex = 0;
+    //    //Dictionary<RatSettings.RatType, int> temp = new Dictionary<RatSettings.RatType, int>();
+    //    foreach (var type in _ratSpawners)
+    //    {
 
-            foreach (var spawner in button.Spawners)
-            {
-                spawner.Button.Init(tempIndex);
-                if (tempIndex < upgradeIndex) spawner.gameObject.SetActive(false);
+    //        var tempListByType = _spawnerButtonsUpgradeDictionary.Where(x => x.Key == type.RatType).ToList();
 
-                tempIndex++;
-            }
-        }
-    }
+    //        foreach (var item in tempListByType)
+    //        {
+    //            foreach (var spawner in type.Spawners)
+    //            {
+    //                if (spawner.Button.GetIndex() == item.Value) 
+    //                {
+    //                    spawner.gameObject.SetActive(false);
+    //                    break;
+    //                }
+    //            }
+    //        }
 
-    public void SetUpgradeButtons()
-    {
-        //foreach (var button in _upgradeButtons)
-        //{
-        //    button.gameObject.SetActive(false);
-        //}
 
-        //if (_upgradeLvl == _washer.Settings.Pause.Length - 1) return;
+    //        //if (_spawnerButtonsUpgradeDictionary.ContainsKey(type.RatType) == false)
+    //        //{
+    //        //    _spawnerButtonsUpgradeDictionary.Add(type.RatType, 0);
 
-        //_upgradeButtons[_upgradeLvl].gameObject.SetActive(true);
-    }
 
-    public void Upgrade(Spawner spawner)
+    //        //}
+
+
+    //        //Debug.LogError("PlayerPrefs");
+    //        //var upgradeIndex = PlayerPrefs.GetInt(type.RatType.ToString(), 0);
+
+    //        //foreach (var spawner in type.Spawners)
+    //        //{
+    //        //    if(_spawnerButtonsUpgradeDictionary[type.RatType] == null)
+    //        //    spawner.Button.Init(tempIndex);
+    //        //    if (tempIndex < upgradeIndex) spawner.gameObject.SetActive(false);
+
+    //        //    tempIndex++;
+    //        //}
+    //    }
+    //}
+
+    //public void SetUpgradeButtons()
+    //{
+    //    //foreach (var button in _upgradeButtons)
+    //    //{
+    //    //    button.gameObject.SetActive(false);
+    //    //}
+
+    //    //if (_upgradeLvl == _washer.Settings.Pause.Length - 1) return;
+
+    //    //_upgradeButtons[_upgradeLvl].gameObject.SetActive(true);
+    //}
+
+    public void Upgrade(Spawner spawner, int index)
     {
         if (_wallet.RemoveMoney(spawner.Button.GetPrice()) == false) return;
 
-        PlayerPrefs.SetInt(spawner.Settings.Type.ToString() + spawner.Button.GetIndex(), 1);
+        Debug.LogError("PlayerPrefs");
+        //PlayerPrefs.SetInt(spawner.Settings.Type.ToString() + spawner.Button.GetIndex(), 1);
 
+        _spawnerButtonsUpgradeDictionary.Add(spawner.Settings.Type, index);
+        _saveManager.SaveData.SpawnerButtonsUpgradeDictionary = _spawnerButtonsUpgradeDictionary;
+        _saveManager.Save();
         spawner.StartSpawn(true);
-
-        /*
-        List<RatUpgrade> list = _ratSpawners.Where(l => l.RatType == type).ToList();
-
-
-        var upgradeIndex = PlayerPrefs.GetInt(type.ToString(), 0);
-
-        if (_wallet.RemoveMoney(list[upgradeIndex].Spawners .GetPrice()) == false) return;
-
-
-        if ()
-
-        int tempIndex = 0;
-        foreach (var button in _ratSpawners)
-        {
-            var upgradeIndex = PlayerPrefs.GetInt(button.RatType.ToString(), 0);
-
-            foreach (var spawner in button.Spawners)
-            {
-                if (tempIndex < upgradeIndex) spawner.gameObject.SetActive(false);
-            }
-        }
-        */
-        //if (_wallet.RemoveMoney(_upgradeButtons[buttonIndex].GetPrice()) == false) return;
-
-        //_upgradeLvl = ((_upgradeLvl + 1) < _washer.Settings.Pause.Length) ? _upgradeLvl + 1 : _washer.Settings.Pause.Length - 1;
-        //PlayerPrefs.SetInt(_washerUpgradeLvlString, _upgradeLvl);
-        //Debug.LogError($"you upgraded washer to lvl {_upgradeLvl}");
-        //SetUpgradeButtons();
-        //_washer.SetUpgrades(_upgradeLvl);
     }
 
-    public int CheckSpawnerActive(RatSettings.RatType type, int index) 
+    public bool CheckSpawnerActive(RatSettings.RatType type, int index)
     {
-        return PlayerPrefs.GetInt(type.ToString() + index, 0);
+        var tempListByType = _spawnerButtonsUpgradeDictionary.Where(x => x.Key == type && x.Value == index);
+        if (tempListByType == null) 
+        {
+            return true;
+        }
+
+        return false;
+
+        //var temp = _saveManager.SaveData.SpawnerButtonsUpgradeDictionary.Where(x => x.Key == type).First();
+        //Debug.LogError(temp.Key + " " + temp.Value);
+
+        //return temp.Value; //PlayerPrefs.GetInt(type.ToString() + index, 0);
     }
 
     [System.Serializable]
@@ -111,7 +136,7 @@ public class SpawnerUpgrader : MonoBehaviour
     {
         [SerializeField] private RatSettings.RatType _ratType;
         [SerializeField] private Spawner[] _spawners;
-        public RatSettings.RatType RatType =>_ratType;
+        public RatSettings.RatType RatType => _ratType;
         public Spawner[] Spawners => _spawners;
     }
 }

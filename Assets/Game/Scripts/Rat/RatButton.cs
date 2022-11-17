@@ -50,7 +50,7 @@ public class RatButton : MonoBehaviour, IGroundButton
     public void HandlePressButton(Collider other)
     {
         if (!_playerTag.Contains(other.gameObject.tag)) return;
-        _spawnerUpgrader.Upgrade(_spawner);
+        _spawnerUpgrader.Upgrade(_spawner, _index);
     }
 
     public void DisableButton()

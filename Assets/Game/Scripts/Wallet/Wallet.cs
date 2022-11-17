@@ -22,8 +22,8 @@ public class Wallet : MonoBehaviour
     private void Awake()
     {
         //   SetMoney(PlayerPrefs.GetInt(_moneyString, 0));
-        _saveManager.LoadSave();
-        SetMoney(_saveManager.Save.MoneyAmount);
+        _saveManager.Load();
+        SetMoney(_saveManager.SaveData.MoneyAmount);
         AmountChangeEvent += SaveMoney;
     }
 
@@ -57,8 +57,8 @@ public class Wallet : MonoBehaviour
 
     private void SaveMoney(int amount)
     {
-        _saveManager.Save.MoneyAmount = amount;
-        _saveManager.SaveData();
+        _saveManager.SaveData.MoneyAmount = amount;
+        _saveManager.Save();
         //PlayerPrefs.SetInt(_moneyString, amount);
     }
 

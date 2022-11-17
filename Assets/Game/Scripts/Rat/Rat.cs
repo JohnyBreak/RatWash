@@ -7,18 +7,26 @@ public class Rat : MonoBehaviour
     private RatSettings _settings;
     private WasherStorage _washer;
     private Spawner _spawner;
+    private Rigidbody _rb;
     public RatSettings Settings => _settings;
 
-    
 
-    public void Collect() 
+    private void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
+    }
+
+
+    public void Collect()
+    {
+        _rb.velocity = Vector3.zero;
         _washer.AddRat(this);
         //gameObject.SetActive(false);
     }
 
     public void Wash() 
     {
+        _rb.velocity = Vector3.zero;
         NightPool.Despawn(this);
         //Destroy(gameObject);
         //gameObject.SetActive(false);
