@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private RatSettings _settings;
     [SerializeField] private float _cooldown = 2f;
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField]
+    //[SerializeField] 
     private RatButton _button; 
 
     private Coroutine _spawnRoutine;
@@ -24,6 +24,11 @@ public class Spawner : MonoBehaviour
     {
         _upgrader = upgrader;
            _washer = washer;
+    }
+
+    private void Awake()
+    {
+        _button = GetComponentInChildren<RatButton>();
     }
 
     private void Start()
