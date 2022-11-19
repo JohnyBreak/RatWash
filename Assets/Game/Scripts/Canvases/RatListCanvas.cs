@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Zenject;
 
-public class Menu : MonoBehaviour
+public class RatListCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasHolder;
     //[SerializeField] private Image _joystickImg;

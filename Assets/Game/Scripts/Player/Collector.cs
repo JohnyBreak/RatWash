@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    [SerializeField] private TagMask _collectableTag;
+   // [SerializeField] private LayerMask _playerMask;
+    //[SerializeField] private float _checkRadius = 1;
+    
 
+    [SerializeField] private TagMask _collectableTag;
     private void OnTriggerEnter(Collider other)
     {
         if (!_collectableTag.Contains(other.gameObject.tag)) return;
@@ -14,4 +17,11 @@ public class Collector : MonoBehaviour
         
         coll.Collect();
     }
+    /*
+    private void Check()
+    {
+        if (Physics.CheckSphere(transform.position, _checkRadius, _playerMask))
+        { 
+        }
+    }*/
 }
