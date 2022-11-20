@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +8,7 @@ using System;
 public class WasherStorage : MonoBehaviour
 {
     public System.Action RatListChangedEvent;
+    public System.Action<RatSettings.RatType> RatListChangedForSaveEvent;
     [SerializeField] private WasherSettings _settings;
     [SerializeField] private List<Transform> _droppersList;
     //[SerializeField] private List<WasherDropper> _droppers;
@@ -22,10 +22,12 @@ public class WasherStorage : MonoBehaviour
     public WasherSettings Settings => _settings;
 
     private Coroutine _washRoutine;
+    private PreSpawner _preSpawner;
 
     [Inject]
-    private void Construct(SaveManager saveManager)
+    private void Construct(SaveManager saveManager, PreSpawner preSpawner)
     {
+        _preSpawner = preSpawner;
         _saveManager = saveManager;
     }
 
@@ -33,31 +35,57 @@ public class WasherStorage : MonoBehaviour
     {
         if (_maxActiveDropperCount >= _droppersList.Count)
             _maxActiveDropperCount = _droppersList.Count;
-        
-        _ratCountDictionary = new Dictionary<RatSettings.RatType, int>();
-        foreach (RatSettings.RatType item in Enum.GetValues(typeof(RatSettings.RatType)))
-        {
-            _ratCountDictionary.Add(item, 0);
-        }
-        //RatListChangedEvent += UpdateRatCounts;
-        //_pause = _settings.Pause[_upgradeLvl];
-        //_maxActiveDropperCount = _settings.MaxDropperCount[_upgradeLvl];
 
         _ratList = new List<Rat>();
         _ratListToWash = new List<Rat>();
+
+        _saveManager.Load();
+        if (_saveManager.SaveData.RatCountDictionary == null)
+        {
+            _ratCountDictionary = new Dictionary<RatSettings.RatType, int>();
+            ResetRatDictionary();
+            Debug.LogError("if");
+        }
+        else
+        {
+            Debug.LogError("Else");
+            _ratCountDictionary = _saveManager.SaveData.RatCountDictionary;
+            foreach (var item in _ratCountDictionary)
+            {
+                for (int i = 0; i < item.Value; i++)
+                {
+                    AddRat(_preSpawner.GetRat(item.Key));
+                }
+            }
+        }
+
+        RatListChangedEvent?.Invoke();
+        RatListChangedForSaveEvent += UpdateRatCountsForSave;
+        //_pause = _settings.Pause[_upgradeLvl];
+        //_maxActiveDropperCount = _settings.MaxDropperCount[_upgradeLvl];
+
     }
 
     private void OnDestroy()
     {
-        //RatListChangedEvent -= UpdateRatCounts;
+        RatListChangedForSaveEvent -= UpdateRatCountsForSave;
+    }
+
+    private void ResetRatDictionary() 
+    {
+        _ratCountDictionary.Clear();
+        foreach (RatSettings.RatType item in Enum.GetValues(typeof(RatSettings.RatType)))
+        {
+            _ratCountDictionary.Add(item, 0);
+        }
+
     }
 
     public void SetUpgrades(int lvl)
     {
         _saveManager.SaveData.WasherUpgradeIndex = lvl;
         _saveManager.Save();
-        Debug.LogError(lvl);
-        _pause = _settings.Pause[lvl]; 
+        _pause = _settings.Pause[lvl];
         _maxActiveDropperCount = _settings.MaxDropperCount[lvl];
     }
 
@@ -83,6 +111,11 @@ public class WasherStorage : MonoBehaviour
 
 
         _ratList.Clear();
+
+        ResetRatDictionary();
+
+        _saveManager.SaveData.RatCountDictionary = _ratCountDictionary;
+        _saveManager.Save();
         RatListChangedEvent?.Invoke();
         if (_washRoutine != null)
         {
@@ -120,6 +153,7 @@ public class WasherStorage : MonoBehaviour
     {
         _ratList.Add(rat);
         RatListChangedEvent?.Invoke();
+        RatListChangedForSaveEvent?.Invoke(rat.Settings.Type);
         ChangeRatPosition(rat);
     }
 
@@ -129,9 +163,18 @@ public class WasherStorage : MonoBehaviour
         {
             _ratCountDictionary[item] = _ratList.Where(x => x.Settings.Type == item).Count();
         }
+
     }
 
-    public Dictionary<RatSettings.RatType, int> GetRatCounts() 
+    private void UpdateRatCountsForSave(RatSettings.RatType type)
+    {
+        _ratCountDictionary[type] += 1;
+
+        _saveManager.SaveData.RatCountDictionary = _ratCountDictionary;
+        _saveManager.Save();
+    }
+
+    public Dictionary<RatSettings.RatType, int> GetRatCounts()
     {
         UpdateRatCounts();
         return _ratCountDictionary;

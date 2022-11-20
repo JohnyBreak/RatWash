@@ -6,7 +6,7 @@ public class Rat : MonoBehaviour
     //[SerializeField] 
     private RatSettings _settings;
     private WasherStorage _washer;
-    private Spawner _spawner;
+    //private Spawner _spawner;
     private Rigidbody _rb;
     public RatSettings Settings => _settings;
 
@@ -42,8 +42,8 @@ public class Rat : MonoBehaviour
     {
         _washer = washer;
     }
-    public void SetSpawner(Spawner spawner) 
-    {
-        _spawner = spawner;
-    }
+    //public void SetSpawner(Spawner spawner) 
+    //{
+    //    _spawner = spawner;
+    //}
 }

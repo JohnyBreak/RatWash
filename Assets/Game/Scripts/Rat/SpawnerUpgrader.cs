@@ -14,6 +14,12 @@ public class SpawnerUpgrader : MonoBehaviour
     private Wallet _wallet;
     private SaveManager _saveManager;
 
+    [Inject]
+    private void Construct(Wallet wallet, SaveManager saveManager)
+    {
+        _wallet = wallet;
+        _saveManager = saveManager;
+    }
 
     private void Awake()
     {
@@ -25,12 +31,7 @@ public class SpawnerUpgrader : MonoBehaviour
         _spawnerDataList = _saveManager.SaveData.SpawnerDataList;
     }
 
-    [Inject]
-    private void Construct(Wallet wallet, SaveManager saveManager)
-    {
-        _wallet = wallet;
-        _saveManager = saveManager;
-    }
+   
 
     //public void InitUpgradeButtons()
     //{

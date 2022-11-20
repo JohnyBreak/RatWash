@@ -14,8 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 1
   _name: Big
-  _prices:
-  - 2
-  - 4
-  - 6
+  _price: 5
   _rat: {fileID: 789979899801250197, guid: 3272608ef1589db49afdd420613f5e3b, type: 3}

@@ -76,7 +76,7 @@ public class Spawner : MonoBehaviour
            Rat rat = NightPool.Spawn(ratSettings.Rat, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
 
         rat.SetWasher(_washer);
-        rat.SetSpawner(this);
+        //rat.SetSpawner(this);
         rat.SetSettings(ratSettings);
     }
 

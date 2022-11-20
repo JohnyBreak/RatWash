@@ -7,7 +7,7 @@ public class SaveData
 {
     public int MoneyAmount;
     public int WasherUpgradeIndex;
-    public List<Rat> RatList;
+    //public List<Rat> RatList;
     public List<SpawnerData> SpawnerDataList;
-
+    public Dictionary<RatSettings.RatType, int> RatCountDictionary;
 }

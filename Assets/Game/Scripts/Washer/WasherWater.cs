@@ -22,7 +22,7 @@ public class WasherWater : MonoBehaviour
         if (!_collectableTag.Contains(other.gameObject.tag)) return;
         if (!other.gameObject.TryGetComponent<Rat>(out Rat rat)) return;
 
-        _wallet.AddMoney(rat.Settings.Prices[0]);
+        _wallet.AddMoney(rat.Settings.Price);
         rat.Wash();
     }
 }

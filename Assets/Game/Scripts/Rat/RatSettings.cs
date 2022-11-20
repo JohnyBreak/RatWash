@@ -16,11 +16,11 @@ public class RatSettings : ScriptableObject
 
     [SerializeField] private RatType _type;
     [SerializeField] private string _name;
-    [SerializeField] private int[] _prices;
+    [SerializeField] private int _price;
     [SerializeField] private Rat _rat;
 
     public Rat Rat => _rat;
     public string Name => _name;
-    public int[] Prices => _prices;
+    public int Price => _price;
     public RatType Type => _type;
 }
