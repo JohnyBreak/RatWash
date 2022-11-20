@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &50536382
 Transform:
   m_ObjectHideFlags: 0
@@ -155,6 +155,7 @@ Transform:
   - {fileID: 1790003165}
   - {fileID: 1604580989}
   - {fileID: 1437864501}
+  - {fileID: 724095134}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -414,10 +415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20216faa932d04d43b93660c5055f3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectableTag:
-    mask: 1
-    tags:
-    - Rat
+  _ratMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _checkRadius: 1.2
 --- !u!54 &153056705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -443,7 +444,7 @@ SphereCollider:
   m_GameObject: {fileID: 153056701}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2284,8 +2285,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 930786291}
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 50536382}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2782,7 +2783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &930786291
 RectTransform:
   m_ObjectHideFlags: 0

@@ -5,23 +5,50 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-   // [SerializeField] private LayerMask _playerMask;
-    //[SerializeField] private float _checkRadius = 1;
-    
+    [SerializeField] private LayerMask _ratMask;
+    [SerializeField] private float _checkRadius = 1;
 
-    [SerializeField] private TagMask _collectableTag;
-    private void OnTriggerEnter(Collider other)
+
+    private void Awake()
     {
-        if (!_collectableTag.Contains(other.gameObject.tag)) return;
-        if (!other.gameObject.TryGetComponent<Rat>(out Rat coll)) return;
-        
-        coll.Collect();
+        StartCoroutine(FindTargetsWithDelay(0.2f));
     }
-    /*
+
+    //[SerializeField] private TagMask _collectableTag;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!_collectableTag.Contains(other.gameObject.tag)) return;
+    //    if (!other.gameObject.TryGetComponent<Rat>(out Rat coll)) return;
+
+    //    coll.Collect();
+    //}
+
+    private IEnumerator FindTargetsWithDelay(float delay)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            Check();
+        }
+    }
+
+    
     private void Check()
     {
-        if (Physics.CheckSphere(transform.position, _checkRadius, _playerMask))
-        { 
+        Collider[] rats = Physics.OverlapSphere(transform.position, _checkRadius, _ratMask);
+        if (rats.Length < 1) return;
+
+
+        foreach (var item in rats)
+        {
+            item.GetComponent<Rat>().Collect();
         }
-    }*/
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _checkRadius);
+    }
 }
