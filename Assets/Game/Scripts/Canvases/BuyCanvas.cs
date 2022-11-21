@@ -10,8 +10,8 @@ public class BuyCanvas : MonoBehaviour
     [SerializeField] private GameObject _holder;
     [SerializeField] private Button _yesButton;
     [SerializeField] private Button _noButton;
-
-
+    [SerializeField] private TMPro.TextMeshProUGUI _priceText;
+    [SerializeField] private string _prefix = "For ";
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +38,9 @@ public class BuyCanvas : MonoBehaviour
         Hide();
     }
 
-    public void Show() 
+    public void Show(int cost) 
     {
+        _priceText.text = $"{_prefix} {cost}";
         _holder.SetActive(true);
     }
 

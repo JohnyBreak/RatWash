@@ -57,7 +57,7 @@ public class WasherUpgrader : MonoBehaviour
         if (_wallet.CheckMoney(_upgradeButtons[buttonIndex].GetPrice()) == false) return;
         _buttonIndex = buttonIndex;
         _buyCanvas.YesCkickEvent += Upgrade;
-        _buyCanvas.Show();
+        _buyCanvas.Show(_upgradeButtons[buttonIndex].GetPrice());
 
 
     }

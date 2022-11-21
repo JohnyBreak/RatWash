@@ -101,7 +101,7 @@ public class SpawnerUpgrader : MonoBehaviour
         _buttonIndex = index;
         _buyCanvas.YesCkickEvent += Upgrade;
         _buyCanvas.NoCkickEvent += DeclineUpgrade;
-        _buyCanvas.Show();
+        _buyCanvas.Show(spawner.Button.GetPrice());
     }
 
     private void Upgrade()

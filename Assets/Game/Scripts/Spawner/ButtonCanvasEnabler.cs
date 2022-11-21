@@ -9,6 +9,7 @@ public class ButtonCanvasEnabler : MonoBehaviour
     [SerializeField] private float _checkRadius = 1;
     [SerializeField]  private LayerMask _playerMask;
     private bool _switch = true;
+    private bool run = true;
 
     private void Awake()
     {
@@ -26,8 +27,9 @@ public class ButtonCanvasEnabler : MonoBehaviour
     private IEnumerator ChekRoutine() 
     {
         var wait = new WaitForSeconds(0.2f);
-        while (true) 
+        while (run)
         {
+            Debug.LogError("while (true)");
             Check();
 
             yield return wait;
@@ -45,7 +47,7 @@ public class ButtonCanvasEnabler : MonoBehaviour
                 _canvasObject.SetActive(true);
             }
         }
-        else 
+        else
         {
             if (!_switch)
             {
@@ -56,14 +58,14 @@ public class ButtonCanvasEnabler : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        _canvasObject.SetActive(false);
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    _canvasObject.SetActive(false);
+    //}
 
     private void OnDrawGizmosSelected()
     {
