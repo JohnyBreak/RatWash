@@ -24,4 +24,9 @@ public class WasherButton : MonoBehaviour, IGroundButton
         if (!_playerTag.Contains(other.gameObject.tag)) return;
         _washer.StartWash();
     }
+
+    public int GetPrice()
+    {
+        return 0;
+    }
 }

@@ -13,7 +13,6 @@ public class PlayerTouchMovement : MonoBehaviour
         Vector3 movement = _agent.speed * Time.deltaTime * new Vector3(_joystick.Direction.x, 0, _joystick.Direction.y);
 
         transform.LookAt(transform.position + movement, Vector3.up);
-
         _agent.Move(movement);
     }
 }

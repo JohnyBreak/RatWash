@@ -17,7 +17,7 @@ public class ButtonCanvasEnabler : MonoBehaviour
         //sc.isTrigger = true;
         _canvasObject = GetComponentInChildren<Canvas>().gameObject;
 
-        GetComponentInChildren<TextMeshProUGUI>().text = GetComponentInParent<RatButton>().GetPrice().ToString();
+        GetComponentInChildren<TextMeshProUGUI>().text = GetComponentInParent<IGroundButton>().GetPrice().ToString();
 
         _canvasObject.SetActive(false);
         StartCoroutine(ChekRoutine());

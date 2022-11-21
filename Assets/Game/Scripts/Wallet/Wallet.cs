@@ -55,6 +55,13 @@ public class Wallet : MonoBehaviour
         return true;
     }
 
+    public bool CheckMoney(int amount)
+    {
+        if (amount > _money) return false;
+
+        return true;
+    }
+
     private void SaveMoney(int amount)
     {
         _saveManager.SaveData.MoneyAmount = amount;

@@ -10,7 +10,9 @@ public class WasherUpgrader : MonoBehaviour
     private Wallet _wallet;
     private SaveManager _saveManager;
     private int _upgradeLvl;
+    private int _buttonIndex = -1;
     private string _washerUpgradeLvlString = "washerUpgradeIndex";
+    private BuyCanvas _buyCanvas;
 
     private void Awake()
     {
@@ -22,8 +24,9 @@ public class WasherUpgrader : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(WasherStorage washer, Wallet wallet, SaveManager saveManager)
+    private void Construct(WasherStorage washer, Wallet wallet, SaveManager saveManager, BuyCanvas buyCanvas)
     {
+        _buyCanvas = buyCanvas;
         _washer = washer;
         _wallet = wallet;
         _saveManager = saveManager;
@@ -49,16 +52,27 @@ public class WasherUpgrader : MonoBehaviour
         _upgradeButtons[_upgradeLvl].gameObject.SetActive(true);
     }
 
-    public void Upgrade(int buttonIndex)
+    public void TryUpgrade(int buttonIndex)
     {
-        if (_wallet.RemoveMoney(_upgradeButtons[buttonIndex].GetPrice()) == false) return;
+        if (_wallet.CheckMoney(_upgradeButtons[buttonIndex].GetPrice()) == false) return;
+        _buttonIndex = buttonIndex;
+        _buyCanvas.YesCkickEvent += Upgrade;
+        _buyCanvas.Show();
 
+
+    }
+
+    private void Upgrade()
+    {
+        _buyCanvas.YesCkickEvent -= Upgrade;
+        _wallet.RemoveMoney(_upgradeButtons[_buttonIndex].GetPrice());
         _upgradeLvl = ((_upgradeLvl + 1) < _washer.Settings.Pause.Length) ? _upgradeLvl + 1 : _washer.Settings.Pause.Length - 1;
         //PlayerPrefs.SetInt(_washerUpgradeLvlString, _upgradeLvl);
 
         Debug.LogError($"you upgraded washer to lvl {_upgradeLvl}");
         SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);
+        _buttonIndex = -1;
     }
 
 }

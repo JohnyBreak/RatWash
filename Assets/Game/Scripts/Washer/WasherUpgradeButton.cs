@@ -18,9 +18,9 @@ public class WasherUpgradeButton : MonoBehaviour, IGroundButton
     }
 
     [Inject]
-    private void Construct(WasherUpgrader upgrader)
+    private void Construct(WasherUpgrader upgrader, BuyCanvas buyCanvas)
     {
-        _washerUpgrader = upgrader;
+           _washerUpgrader = upgrader;
     }
 
     public void Init( int index)
@@ -36,6 +36,6 @@ public class WasherUpgradeButton : MonoBehaviour, IGroundButton
     public void HandlePressButton(Collider other)
     {
         if (!_playerTag.Contains(other.gameObject.tag)) return;
-        _washerUpgrader.Upgrade(_index);
+        _washerUpgrader.TryUpgrade(_index);
     }
 }

@@ -13,10 +13,14 @@ public class SpawnerUpgrader : MonoBehaviour
     private List<SpawnerData> _spawnerDataList;
     private Wallet _wallet;
     private SaveManager _saveManager;
+    private BuyCanvas _buyCanvas;
+    private Spawner _spawner;
+    private int _buttonIndex;
 
     [Inject]
-    private void Construct(Wallet wallet, SaveManager saveManager)
+    private void Construct(Wallet wallet, SaveManager saveManager, BuyCanvas buyCanvas)
     {
+        _buyCanvas = buyCanvas;
         _wallet = wallet;
         _saveManager = saveManager;
     }
@@ -89,15 +93,36 @@ public class SpawnerUpgrader : MonoBehaviour
     //    //_upgradeButtons[_upgradeLvl].gameObject.SetActive(true);
     //}
 
-    public void Upgrade(Spawner spawner, int index)
+    public void TryUpgrade(Spawner spawner, int index)
     {
-        if (_wallet.RemoveMoney(spawner.Button.GetPrice()) == false) return;
+        if (_wallet.CheckMoney(spawner.Button.GetPrice()) == false) return;
 
-        _spawnerDataList.Add(new SpawnerData(spawner.Settings.Type, index));
+        _spawner = spawner;
+        _buttonIndex = index;
+        _buyCanvas.YesCkickEvent += Upgrade;
+        _buyCanvas.NoCkickEvent += DeclineUpgrade;
+        _buyCanvas.Show();
+    }
+
+    private void Upgrade()
+    {
+        _wallet.RemoveMoney(_spawner.Button.GetPrice());
+
+        _spawnerDataList.Add(new SpawnerData(_spawner.Settings.Type, _buttonIndex));
         _saveManager.SaveData.SpawnerDataList = _spawnerDataList;
         _saveManager.Save();
 
-        spawner.StartSpawn(true);
+        _spawner.StartSpawn(true);
+        DeclineUpgrade();
+    }
+
+    private void DeclineUpgrade()
+    {
+        _buyCanvas.NoCkickEvent -= DeclineUpgrade;
+
+        _buyCanvas.YesCkickEvent -= Upgrade;
+        _spawner = null;
+        _buttonIndex = -1;
     }
 
     public bool CheckSpawnerActive(RatSettings.RatType type, int index)
