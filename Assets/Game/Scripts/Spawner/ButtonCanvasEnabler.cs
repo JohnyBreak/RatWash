@@ -21,6 +21,11 @@ public class ButtonCanvasEnabler : MonoBehaviour
         GetComponentInChildren<TextMeshProUGUI>().text = GetComponentInParent<IGroundButton>().GetPrice().ToString();
 
         _canvasObject.SetActive(false);
+        
+    }
+
+    private void OnEnable()
+    {
         StartCoroutine(ChekRoutine());
     }
 
@@ -29,7 +34,6 @@ public class ButtonCanvasEnabler : MonoBehaviour
         var wait = new WaitForSeconds(0.2f);
         while (run)
         {
-            Debug.LogError("while (true)");
             Check();
 
             yield return wait;
