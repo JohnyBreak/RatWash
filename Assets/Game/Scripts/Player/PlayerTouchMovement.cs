@@ -1,6 +1,7 @@
 using UnityEngine.AI;
 using UnityEngine;
 using System;
+using Zenject;
 
 public class PlayerTouchMovement : MonoBehaviour
 {
@@ -15,4 +16,5 @@ public class PlayerTouchMovement : MonoBehaviour
         transform.LookAt(transform.position + movement, Vector3.up);
         _agent.Move(movement);
     }
+
 }

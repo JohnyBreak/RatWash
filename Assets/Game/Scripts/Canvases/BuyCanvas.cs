@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BuyCanvas : MonoBehaviour
 {
+    public Action OpenScreenEvent;
+    public Action HideScreenEvent;
     public Action YesCkickEvent;
     public Action NoCkickEvent;
     [SerializeField] private GameObject _holder;
@@ -40,12 +42,14 @@ public class BuyCanvas : MonoBehaviour
 
     public void Show(int cost) 
     {
+        OpenScreenEvent?.Invoke();
         _priceText.text = $"{_prefix} {cost}";
         _holder.SetActive(true);
     }
 
     public void Hide()
     {
+        HideScreenEvent?.Invoke();
         _holder.SetActive(false);
     }
 
