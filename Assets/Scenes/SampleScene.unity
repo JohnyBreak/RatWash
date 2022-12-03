@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44402188, g: 0.4931649, b: 0.57223135, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -954,15 +954,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328706736}
-  m_LocalRotation: {x: 0.2740067, y: -0.000000012706911, z: 0.0000000036203367, w: 0.9617278}
-  m_LocalPosition: {x: 1.873, y: 9.01, z: -8.31}
+  m_LocalRotation: {x: 0.39517888, y: -0.0000000121371375, z: 0.000000005221335, w: 0.9186042}
+  m_LocalPosition: {x: 1.873, y: 8.501, z: -8.582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1193758945}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 46.554, y: 0, z: 0}
 --- !u!1 &350043226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,7 +2658,7 @@ GameObject:
   - component: {fileID: 788963856}
   - component: {fileID: 788963855}
   m_Layer: 0
-  m_Name: RatSpawner (1)
+  m_Name: RatSpawner (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2687,7 +2687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788963854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.24, y: 0, z: 2.9699984}
+  m_LocalPosition: {x: 14.24, y: 0, z: 3}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3336,8 +3336,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2740067, y: -0.000000012706911, z: 0.0000000036203367, w: 0.9617278}
-  m_LocalPosition: {x: 1.873, y: 9.01, z: -8.31}
+  m_LocalRotation: {x: 0.39517888, y: -0.0000000121371375, z: 0.000000005221335, w: 0.9186042}
+  m_LocalPosition: {x: 1.873, y: 8.501, z: -8.582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3798,7 +3798,7 @@ GameObject:
   - component: {fileID: 1011801295}
   - component: {fileID: 1011801294}
   m_Layer: 0
-  m_Name: RatSpawner (3)
+  m_Name: RatSpawner (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3827,7 +3827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011801293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.28, y: 0, z: 0.08999634}
+  m_LocalPosition: {x: 11.28, y: 0, z: 0}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4870,7 +4870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8.01, z: -8.31}
+  m_FollowOffset: {x: 0, y: 7.5010004, z: -8.582}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5464,7 +5464,7 @@ GameObject:
   - component: {fileID: 1343473623}
   - component: {fileID: 1343473624}
   m_Layer: 0
-  m_Name: RatSpawner
+  m_Name: RatSpawner(10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5478,7 +5478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343473622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.28, y: 0, z: 2.9699984}
+  m_LocalPosition: {x: 11.28, y: 0, z: 3}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5596,7 +5596,7 @@ GameObject:
   - component: {fileID: 1374452093}
   - component: {fileID: 1374452092}
   m_Layer: 0
-  m_Name: RatSpawner (2)
+  m_Name: RatSpawner (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5625,7 +5625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374452091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.89, y: 0, z: -0.030003548}
+  m_LocalPosition: {x: 14.24, y: 0, z: 0}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
