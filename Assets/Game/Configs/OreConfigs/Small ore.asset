@@ -15,4 +15,4 @@ MonoBehaviour:
   _type: 2
   _name: Small
   _price: 3
-  _rat: {fileID: 5001683372163422870, guid: 6873b86114bd7604e9538ae5f6999efe, type: 3}
+  _ore: {fileID: 5001683372163422870, guid: 6873b86114bd7604e9538ae5f6999efe, type: 3}

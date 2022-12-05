@@ -73,7 +73,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnRat(OreSettings ratSettings) 
     {
-           Ore rat = NightPool.Spawn(ratSettings.Rat, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
+           Ore rat = NightPool.Spawn(ratSettings.Ore, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
 
         rat.SetRecycler(_washer);
         //rat.SetSpawner(this);

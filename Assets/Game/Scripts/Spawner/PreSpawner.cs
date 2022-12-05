@@ -25,7 +25,7 @@ public class PreSpawner : MonoBehaviour
 
     private Ore SpawnRat(OreSettings ratSettings)
     {
-        Ore rat = NightPool.Spawn(ratSettings.Rat);
+        Ore rat = NightPool.Spawn(ratSettings.Ore);
 
         rat.SetRecycler(_washer);
         rat.SetSettings(ratSettings);

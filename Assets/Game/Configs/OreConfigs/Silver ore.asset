@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88a2a74100b9e7c4d82d4ffee4a1edb5, type: 3}
-  m_Name: Classic ore
+  m_Name: Silver ore
   m_EditorClassIdentifier: 
-  _type: 0
-  _name: Classic
-  _price: 1
-  _ore: {fileID: 2779862308664696369, guid: 819d024061a14f247a7b2f32b85b9147, type: 3}
+  _type: 3
+  _name: Silver
+  _price: 7
+  _ore: {fileID: 5902388605669818611, guid: bc8f33e192e55a84093e7e5e25699544, type: 3}
