@@ -137,6 +137,7 @@ public class RecyclingStorage : MonoBehaviour
 
                 recycleList[0].transform.position = _droppersList[i].position;
                 recycleList[0].gameObject.SetActive(true);
+                recycleList[0].gameObject.layer = LayerMask.NameToLayer("Recycling"); ;
                 recycleList.Remove(recycleList[0]);
             }
             yield return new WaitForSeconds(_pause);
