@@ -18,7 +18,7 @@ public class RecyclingUpgrader : MonoBehaviour
     {
         InitUpgradeButtons();
         _saveManager.Load();
-        _upgradeLvl = _saveManager.SaveData.WasherUpgradeIndex;//PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
+        _upgradeLvl = _saveManager.SaveData.RecyclingUpgradeIndex;//PlayerPrefs.GetInt(_washerUpgradeLvlString, 0); //_settings.UpgradeLvl;
         SetUpgradeButtons();
         _washer.SetUpgrades(_upgradeLvl);
     }

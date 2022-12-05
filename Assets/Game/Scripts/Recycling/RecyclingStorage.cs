@@ -40,7 +40,7 @@ public class RecyclingStorage : MonoBehaviour
         _ratListToWash = new List<Ore>();
 
         _saveManager.Load();
-        if (_saveManager.SaveData.RatCountDictionary == null)
+        if (_saveManager.SaveData.OreCountDictionary == null)
         {
             _ratCountDictionary = new Dictionary<OreSettings.OreType, int>();
             ResetRatDictionary();
@@ -49,7 +49,7 @@ public class RecyclingStorage : MonoBehaviour
         else
         {
             Debug.LogError("Else");
-            _ratCountDictionary = _saveManager.SaveData.RatCountDictionary;
+            _ratCountDictionary = _saveManager.SaveData.OreCountDictionary;
             foreach (var item in _ratCountDictionary)
             {
                 for (int i = 0; i < item.Value; i++)
@@ -83,7 +83,7 @@ public class RecyclingStorage : MonoBehaviour
 
     public void SetUpgrades(int lvl)
     {
-        _saveManager.SaveData.WasherUpgradeIndex = lvl;
+        _saveManager.SaveData.RecyclingUpgradeIndex = lvl;
         _saveManager.Save();
         _pause = _settings.Pause[lvl];
         _maxActiveDropperCount = _settings.MaxDropperCount[lvl];
@@ -114,7 +114,7 @@ public class RecyclingStorage : MonoBehaviour
 
         ResetRatDictionary();
 
-        _saveManager.SaveData.RatCountDictionary = _ratCountDictionary;
+        _saveManager.SaveData.OreCountDictionary = _ratCountDictionary;
         _saveManager.Save();
         OreListChangedEvent?.Invoke();
         if (_washRoutine != null)
@@ -170,7 +170,7 @@ public class RecyclingStorage : MonoBehaviour
     {
         _ratCountDictionary[type] += 1;
 
-        _saveManager.SaveData.RatCountDictionary = _ratCountDictionary;
+        _saveManager.SaveData.OreCountDictionary = _ratCountDictionary;
         _saveManager.Save();
     }
 

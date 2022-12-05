@@ -8,22 +8,23 @@ public class Spawner : MonoBehaviour
     [SerializeField] private OreSettings _settings;
     [SerializeField] private float _cooldown = 2f;
     [SerializeField] private Transform _spawnPoint;
+
     //[SerializeField] 
     private OreButton _button; 
 
     private Coroutine _spawnRoutine;
     private SpawnerUpgrader _upgrader;
-    private RecyclingStorage _washer;
+    private RecyclingStorage _storage;
     private bool _activated;
 
     public OreSettings Settings => _settings;
     public OreButton Button => _button;
 
     [Inject]
-    private void Constructor(RecyclingStorage washer, SpawnerUpgrader upgrader)
+    private void Constructor(RecyclingStorage storage, SpawnerUpgrader upgrader)
     {
         _upgrader = upgrader;
-           _washer = washer;
+           _storage = storage;
     }
 
     private void Awake()
@@ -49,15 +50,16 @@ public class Spawner : MonoBehaviour
 
         _button.DisableButton();
 
-        _spawnRoutine = StartCoroutine(SpawnRats());
+        _spawnRoutine = StartCoroutine(SpawnOreRoutine());
     }
 
     private void CheckActivity() 
     {
         _activated = _upgrader.CheckSpawnerActive(_settings.Type, _button.GetIndex());
+        _spawnPoint.gameObject.SetActive(_activated);
     }
 
-    private IEnumerator SpawnRats()
+    private IEnumerator SpawnOreRoutine()
     {
         var wait = new WaitForSeconds(_cooldown);
 
@@ -65,19 +67,19 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
 
-            SpawnRat(_settings);
+            SpawnOre(_settings);
 
             yield return wait;
         }
     }
 
-    private void SpawnRat(OreSettings ratSettings) 
+    private void SpawnOre(OreSettings ratSettings) 
     {
-           Ore rat = NightPool.Spawn(ratSettings.Ore, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
+           Ore ore = NightPool.Spawn(ratSettings.Ore, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
 
-        rat.SetRecycler(_washer);
+        ore.SetRecycler(_storage);
         //rat.SetSpawner(this);
-        rat.SetSettings(ratSettings);
+        ore.SetSettings(ratSettings);
     }
 
     //public void ReturnRat(Rat rat) 

@@ -7,7 +7,7 @@ using Zenject;
 public class SpawnerUpgrader : MonoBehaviour
 {
     //[SerializeField] private List<WasherUpgradeButton> _upgradeButtons;
-
+    public Action SpawnerUpgradeEvent;
 
     [SerializeField] private List<RatUpgrade> _ratSpawners;
     private List<SpawnerData> _spawnerDataList;
@@ -111,6 +111,7 @@ public class SpawnerUpgrader : MonoBehaviour
         _spawnerDataList.Add(new SpawnerData(_spawner.Settings.Type, _buttonIndex));
         _saveManager.SaveData.SpawnerDataList = _spawnerDataList;
         _saveManager.Save();
+        SpawnerUpgradeEvent?.Invoke();
 
         _spawner.StartSpawn(true);
         DeclineUpgrade();
@@ -129,7 +130,7 @@ public class SpawnerUpgrader : MonoBehaviour
     {
         foreach (var spawner in _spawnerDataList)
         {
-            if (spawner.RatType == type && spawner.Index == index)
+            if (spawner.OreType == type && spawner.Index == index)
             {
                 return true;
             }

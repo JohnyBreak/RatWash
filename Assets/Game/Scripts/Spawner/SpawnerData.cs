@@ -1,11 +1,11 @@
 [System.Serializable]
 public class SpawnerData
 {
-    public OreSettings.OreType RatType;
+    public OreSettings.OreType OreType;
     public int Index;
     public SpawnerData(OreSettings.OreType type, int index) 
     {
-        RatType = type;
+        OreType = type;
         Index = index;
     }
 }

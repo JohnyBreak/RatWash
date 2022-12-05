@@ -22,21 +22,21 @@ public class SaveManager : MonoBehaviour
         SerializationManager.Save(SaveData);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Save();
-        }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        Save();
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Load();
-        }
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        Load();
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Debug.LogError(SaveData.MoneyAmount);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.F))
+    //    {
+    //        Debug.LogError(SaveData.MoneyAmount);
+    //    }
+    //}
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class SaveData
 {
     public int MoneyAmount;
-    public int WasherUpgradeIndex;
+    public int RecyclingUpgradeIndex;
     //public List<Rat> RatList;
     public List<SpawnerData> SpawnerDataList;
-    public Dictionary<OreSettings.OreType, int> RatCountDictionary;
+    public Dictionary<OreSettings.OreType, int> OreCountDictionary;
 }
