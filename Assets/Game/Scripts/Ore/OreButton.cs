@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class RatButton : MonoBehaviour, IGroundButton
+public class OreButton : MonoBehaviour, IGroundButton
 {
     [SerializeField] private TagMask _playerTag;
 

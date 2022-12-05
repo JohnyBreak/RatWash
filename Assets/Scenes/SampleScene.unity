@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -642,7 +642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274509404}
   m_Layer: 0
-  m_Name: Washer Dropper (3)
+  m_Name: Recycler Dropper (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2062,7 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474c73ae309612947a46f9e8c358ef1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _washer: {fileID: 1641014353}
+  _recycler: {fileID: 1641014353}
 --- !u!1 &646135098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3696,12 +3696,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1000766463}
-  - component: {fileID: 1000766462}
   - component: {fileID: 1000766461}
   - component: {fileID: 1000766460}
   - component: {fileID: 1000766464}
+  - component: {fileID: 1000766465}
   m_Layer: 0
-  m_Name: WasherUpgradeButton (1)
+  m_Name: RecyclerUpgradeButton (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3736,23 +3736,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1206832, y: 0.64791334, z: 1.9530396}
   m_Center: {x: 0, y: 0.28224903, z: 0}
---- !u!114 &1000766462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000766459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fbb7216ec8038d448fe7cb942e95199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerTag:
-    mask: 1
-    tags:
-    - Player
-  _upgradePrice: 20
 --- !u!4 &1000766463
 Transform:
   m_ObjectHideFlags: 0
@@ -3787,6 +3770,23 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1000766465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000766459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103b53ff0cf5cd546bda5ed308b7c8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerTag:
+    mask: 1
+    tags:
+    - Player
+  _upgradePrice: 50
 --- !u!1 &1011801293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,7 +3846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1027479152}
   m_Layer: 0
-  m_Name: Washer Dropper (6)
+  m_Name: Recycler Dropper (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4000,10 +4000,10 @@ GameObject:
   - component: {fileID: 1045737166}
   - component: {fileID: 1045737168}
   - component: {fileID: 1045737167}
-  - component: {fileID: 1045737169}
   - component: {fileID: 1045737170}
+  - component: {fileID: 1045737171}
   m_Layer: 0
-  m_Name: WasherUpgradeButton
+  m_Name: RecyclerUpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4056,23 +4056,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1206832, y: 0.64791334, z: 1.9530396}
   m_Center: {x: 0, y: 0.28224903, z: 0}
---- !u!114 &1045737169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045737165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fbb7216ec8038d448fe7cb942e95199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerTag:
-    mask: 1
-    tags:
-    - Player
-  _upgradePrice: 10
 --- !u!114 &1045737170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4089,6 +4072,24 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1045737171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045737165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103b53ff0cf5cd546bda5ed308b7c8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerTag:
+    mask: 1
+    tags:
+    - Player
+    - Rat
+  _upgradePrice: 25
 --- !u!1 &1069414330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,7 +4251,7 @@ GameObject:
   - component: {fileID: 1100823205}
   - component: {fileID: 1100823206}
   m_Layer: 0
-  m_Name: Washer Dropper
+  m_Name: Recycler Dropper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4294,7 +4295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1104212254}
   m_Layer: 0
-  m_Name: Washer Dropper (1)
+  m_Name: Recycler Dropper (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4329,7 +4330,7 @@ GameObject:
   - component: {fileID: 1133803812}
   - component: {fileID: 1133803815}
   m_Layer: 4
-  m_Name: Water
+  m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4428,7 +4429,7 @@ MonoBehaviour:
   _collectableTag:
     mask: 1
     tags:
-    - Rat
+    - Ore
 --- !u!1 &1152216278
 GameObject:
   m_ObjectHideFlags: 0
@@ -5248,7 +5249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274635918}
   m_Layer: 0
-  m_Name: Washer Dropper (4)
+  m_Name: Recycler Dropper (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5890,7 +5891,7 @@ GameObject:
   - component: {fileID: 1437864498}
   - component: {fileID: 1437864502}
   m_Layer: 5
-  m_Name: RatListCanvas
+  m_Name: OreListCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5992,7 +5993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasHolder: {fileID: 816491738}
-  _ratListElements:
+  _oreListElements:
   - Type: 0
     Text: {fileID: 1069414333}
   - Type: 2
@@ -6575,7 +6576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1563292500}
   m_Layer: 0
-  m_Name: Washer Dropper (8)
+  m_Name: Recycler Dropper (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6606,7 +6607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570529106}
   m_Layer: 0
-  m_Name: Washer Dropper (2)
+  m_Name: Recycler Dropper (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7022,7 +7023,7 @@ GameObject:
   - component: {fileID: 1641014353}
   - component: {fileID: 1641014354}
   m_Layer: 0
-  m_Name: Washer
+  m_Name: Recycler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7092,12 +7093,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641014351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a00adc22b89539479ab27e885977d0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 124451a24958a294a88c8c9acef96667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButtons:
-  - {fileID: 1045737169}
-  - {fileID: 1000766462}
+  - {fileID: 1045737171}
+  - {fileID: 1000766465}
 --- !u!1 &1697896703
 GameObject:
   m_ObjectHideFlags: 0
@@ -7549,7 +7550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1795559191}
   m_Layer: 0
-  m_Name: Washer Dropper (7)
+  m_Name: Recycler Dropper (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8301,7 +8302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038216091}
   m_Layer: 0
-  m_Name: Washer Dropper (5)
+  m_Name: Recycler Dropper (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8467,7 +8468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064470886}
   m_Layer: 0
-  m_Name: WasherButton
+  m_Name: RecyclerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8972,7 +8973,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rats
+  m_text: Ore
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88a2a74100b9e7c4d82d4ffee4a1edb5, type: 3}
-  m_Name: Big rat
+  m_Name: Big ore
   m_EditorClassIdentifier: 
   _type: 1
   _name: Big

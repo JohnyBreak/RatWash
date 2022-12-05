@@ -2,16 +2,16 @@ using GameOn.TagMaskField;
 using UnityEngine;
 using Zenject;
 
-public class WasherButton : MonoBehaviour, IGroundButton
+public class RecyclingButton : MonoBehaviour, IGroundButton
 {
     [SerializeField] private TagMask _playerTag;
 
-    private WasherStorage _washer;
+    private RecyclingStorage _recycling;
 
     [Inject]
-    private void Construct(WasherStorage washer)
+    private void Construct(RecyclingStorage recycling)
     {
-        _washer = washer;
+        _recycling = recycling;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +22,7 @@ public class WasherButton : MonoBehaviour, IGroundButton
     public void HandlePressButton(Collider other)
     {
         if (!_playerTag.Contains(other.gameObject.tag)) return;
-        _washer.StartWash();
+        _recycling.StartRecycling();
     }
 
     public int GetPrice()

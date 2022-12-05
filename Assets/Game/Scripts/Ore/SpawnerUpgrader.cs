@@ -125,7 +125,7 @@ public class SpawnerUpgrader : MonoBehaviour
         _buttonIndex = -1;
     }
 
-    public bool CheckSpawnerActive(RatSettings.RatType type, int index)
+    public bool CheckSpawnerActive(OreSettings.OreType type, int index)
     {
         foreach (var spawner in _spawnerDataList)
         {
@@ -140,9 +140,9 @@ public class SpawnerUpgrader : MonoBehaviour
     [System.Serializable]
     public class RatUpgrade
     {
-        [SerializeField] private RatSettings.RatType _ratType;
+        [SerializeField] private OreSettings.OreType _ratType;
         [SerializeField] private Spawner[] _spawners;
-        public RatSettings.RatType RatType => _ratType;
+        public OreSettings.OreType RatType => _ratType;
         public Spawner[] Spawners => _spawners;
     }
 }

@@ -6,15 +6,15 @@ using UnityEngine;
 public class PreSpawner : MonoBehaviour
 {
     [SerializeField] private List<PreSpawnerData> _rats;
-    private WasherStorage _washer;
+    private RecyclingStorage _washer;
 
     [Inject]
-    private void Constructor(WasherStorage washer)
+    private void Constructor(RecyclingStorage washer)
     {
         _washer = washer;
     }
 
-    public Rat GetRat(RatSettings.RatType type) 
+    public Ore GetRat(OreSettings.OreType type) 
     {
         foreach (var rat in _rats)
         {
@@ -23,11 +23,11 @@ public class PreSpawner : MonoBehaviour
         return null;
     }
 
-    private Rat SpawnRat(RatSettings ratSettings)
+    private Ore SpawnRat(OreSettings ratSettings)
     {
-        Rat rat = NightPool.Spawn(ratSettings.Rat);
+        Ore rat = NightPool.Spawn(ratSettings.Rat);
 
-        rat.SetWasher(_washer);
+        rat.SetRecycler(_washer);
         rat.SetSettings(ratSettings);
         return rat;
     }
@@ -35,6 +35,6 @@ public class PreSpawner : MonoBehaviour
 [System.Serializable]
 public class PreSpawnerData 
 {
-    public RatSettings.RatType Type;
-    public RatSettings RatSettings;
+    public OreSettings.OreType Type;
+    public OreSettings RatSettings;
 }

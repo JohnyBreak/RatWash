@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class WasherUpgrader : MonoBehaviour
+public class RecyclingUpgrader : MonoBehaviour
 {
-    [SerializeField] private List<WasherUpgradeButton> _upgradeButtons;
-    private WasherStorage _washer;
+    [SerializeField] private List<RecyclingUpgradeButton> _upgradeButtons;
+    private RecyclingStorage _washer;
     private Wallet _wallet;
     private SaveManager _saveManager;
     private int _upgradeLvl;
@@ -24,7 +24,7 @@ public class WasherUpgrader : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(WasherStorage washer, Wallet wallet, SaveManager saveManager, BuyCanvas buyCanvas)
+    private void Construct(RecyclingStorage washer, Wallet wallet, SaveManager saveManager, BuyCanvas buyCanvas)
     {
         _buyCanvas = buyCanvas;
         _washer = washer;

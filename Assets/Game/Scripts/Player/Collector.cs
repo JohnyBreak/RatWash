@@ -41,7 +41,7 @@ public class Collector : MonoBehaviour
 
         foreach (var item in rats)
         {
-            item.GetComponent<Rat>().Collect();
+            item.GetComponent<Ore>().Collect();
         }
 
     }

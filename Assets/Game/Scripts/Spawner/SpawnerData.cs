@@ -1,9 +1,9 @@
 [System.Serializable]
 public class SpawnerData
 {
-    public RatSettings.RatType RatType;
+    public OreSettings.OreType RatType;
     public int Index;
-    public SpawnerData(RatSettings.RatType type, int index) 
+    public SpawnerData(OreSettings.OreType type, int index) 
     {
         RatType = type;
         Index = index;

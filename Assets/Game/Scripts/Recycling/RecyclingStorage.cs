@@ -5,21 +5,21 @@ using Zenject;
 using System.Linq;
 using System;
 
-public class WasherStorage : MonoBehaviour
+public class RecyclingStorage : MonoBehaviour
 {
-    public System.Action RatListChangedEvent;
-    public System.Action<RatSettings.RatType> RatListChangedForSaveEvent;
-    [SerializeField] private WasherSettings _settings;
+    public System.Action OreListChangedEvent;
+    public System.Action<OreSettings.OreType> RatListChangedForSaveEvent;
+    [SerializeField] private RecyclingSettings _settings;
     [SerializeField] private List<Transform> _droppersList;
     //[SerializeField] private List<WasherDropper> _droppers;
 
     private SaveManager _saveManager;
-    private List<Rat> _ratList;
-    private List<Rat> _ratListToWash;
-    private Dictionary<RatSettings.RatType, int> _ratCountDictionary;
+    private List<Ore> _ratList;
+    private List<Ore> _ratListToWash;
+    private Dictionary<OreSettings.OreType, int> _ratCountDictionary;
     private float _pause;
     private int _maxActiveDropperCount;
-    public WasherSettings Settings => _settings;
+    public RecyclingSettings Settings => _settings;
 
     private Coroutine _washRoutine;
     private PreSpawner _preSpawner;
@@ -36,13 +36,13 @@ public class WasherStorage : MonoBehaviour
         if (_maxActiveDropperCount >= _droppersList.Count)
             _maxActiveDropperCount = _droppersList.Count;
 
-        _ratList = new List<Rat>();
-        _ratListToWash = new List<Rat>();
+        _ratList = new List<Ore>();
+        _ratListToWash = new List<Ore>();
 
         _saveManager.Load();
         if (_saveManager.SaveData.RatCountDictionary == null)
         {
-            _ratCountDictionary = new Dictionary<RatSettings.RatType, int>();
+            _ratCountDictionary = new Dictionary<OreSettings.OreType, int>();
             ResetRatDictionary();
             Debug.LogError("if");
         }
@@ -54,12 +54,12 @@ public class WasherStorage : MonoBehaviour
             {
                 for (int i = 0; i < item.Value; i++)
                 {
-                    AddRat(_preSpawner.GetRat(item.Key));
+                    AddOre(_preSpawner.GetRat(item.Key));
                 }
             }
         }
 
-        RatListChangedEvent?.Invoke();
+        OreListChangedEvent?.Invoke();
         RatListChangedForSaveEvent += UpdateRatCountsForSave;
         //_pause = _settings.Pause[_upgradeLvl];
         //_maxActiveDropperCount = _settings.MaxDropperCount[_upgradeLvl];
@@ -74,7 +74,7 @@ public class WasherStorage : MonoBehaviour
     private void ResetRatDictionary() 
     {
         _ratCountDictionary.Clear();
-        foreach (RatSettings.RatType item in Enum.GetValues(typeof(RatSettings.RatType)))
+        foreach (OreSettings.OreType item in Enum.GetValues(typeof(OreSettings.OreType)))
         {
             _ratCountDictionary.Add(item, 0);
         }
@@ -89,7 +89,7 @@ public class WasherStorage : MonoBehaviour
         _maxActiveDropperCount = _settings.MaxDropperCount[lvl];
     }
 
-    public void StartWash()
+    public void StartRecycling()
     {
         if (_ratList.Count < 1) return;
         foreach (var item in _ratList)
@@ -116,7 +116,7 @@ public class WasherStorage : MonoBehaviour
 
         _saveManager.SaveData.RatCountDictionary = _ratCountDictionary;
         _saveManager.Save();
-        RatListChangedEvent?.Invoke();
+        OreListChangedEvent?.Invoke();
         if (_washRoutine != null)
         {
             StopCoroutine(_washRoutine);
@@ -125,7 +125,7 @@ public class WasherStorage : MonoBehaviour
         _washRoutine = StartCoroutine(WashRoutine(_ratListToWash));
     }
 
-    private IEnumerator WashRoutine(List<Rat> washList)
+    private IEnumerator WashRoutine(List<Ore> washList)
     {
         while (washList.Count > 0)
         {
@@ -143,30 +143,30 @@ public class WasherStorage : MonoBehaviour
         }
     }
 
-    private void ChangeRatPosition(Rat rat)
+    private void ChangeRatPosition(Ore rat)
     {
         rat.transform.position = transform.position + transform.up * 2f;
         rat.gameObject.SetActive(false);
     }
 
-    public void AddRat(Rat rat)
+    public void AddOre(Ore rat)
     {
         _ratList.Add(rat);
-        RatListChangedEvent?.Invoke();
+        OreListChangedEvent?.Invoke();
         RatListChangedForSaveEvent?.Invoke(rat.Settings.Type);
         ChangeRatPosition(rat);
     }
 
     private void UpdateRatCounts()
     {
-        foreach (RatSettings.RatType item in Enum.GetValues(typeof(RatSettings.RatType)))
+        foreach (OreSettings.OreType item in Enum.GetValues(typeof(OreSettings.OreType)))
         {
             _ratCountDictionary[item] = _ratList.Where(x => x.Settings.Type == item).Count();
         }
 
     }
 
-    private void UpdateRatCountsForSave(RatSettings.RatType type)
+    private void UpdateRatCountsForSave(OreSettings.OreType type)
     {
         _ratCountDictionary[type] += 1;
 
@@ -174,7 +174,7 @@ public class WasherStorage : MonoBehaviour
         _saveManager.Save();
     }
 
-    public Dictionary<RatSettings.RatType, int> GetRatCounts()
+    public Dictionary<OreSettings.OreType, int> GetOreCounts()
     {
         UpdateRatCounts();
         return _ratCountDictionary;

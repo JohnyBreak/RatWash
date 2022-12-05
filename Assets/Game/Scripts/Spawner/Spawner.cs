@@ -5,22 +5,22 @@ using Zenject;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private RatSettings _settings;
+    [SerializeField] private OreSettings _settings;
     [SerializeField] private float _cooldown = 2f;
     [SerializeField] private Transform _spawnPoint;
     //[SerializeField] 
-    private RatButton _button; 
+    private OreButton _button; 
 
     private Coroutine _spawnRoutine;
     private SpawnerUpgrader _upgrader;
-    private WasherStorage _washer;
+    private RecyclingStorage _washer;
     private bool _activated;
 
-    public RatSettings Settings => _settings;
-    public RatButton Button => _button;
+    public OreSettings Settings => _settings;
+    public OreButton Button => _button;
 
     [Inject]
-    private void Constructor(WasherStorage washer, SpawnerUpgrader upgrader)
+    private void Constructor(RecyclingStorage washer, SpawnerUpgrader upgrader)
     {
         _upgrader = upgrader;
            _washer = washer;
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        _button = GetComponentInChildren<RatButton>();
+        _button = GetComponentInChildren<OreButton>();
     }
 
     private void Start()
@@ -71,11 +71,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void SpawnRat(RatSettings ratSettings) 
+    private void SpawnRat(OreSettings ratSettings) 
     {
-           Rat rat = NightPool.Spawn(ratSettings.Rat, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
+           Ore rat = NightPool.Spawn(ratSettings.Rat, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
 
-        rat.SetWasher(_washer);
+        rat.SetRecycler(_washer);
         //rat.SetSpawner(this);
         rat.SetSettings(ratSettings);
     }

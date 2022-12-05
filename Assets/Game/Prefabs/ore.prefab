@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2779862308664696369}
   - component: {fileID: 2779862308664696370}
   m_Layer: 7
-  m_Name: rat
+  m_Name: ore
   m_TagString: Rat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

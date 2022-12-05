@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WasherDropper : MonoBehaviour
+public class RecyclingDropper : MonoBehaviour
 {
-    [SerializeField] private RatSettings.RatType _type;
+    [SerializeField] private OreSettings.OreType _type;
 
-    private List<Rat> _ratList;
+    private List<Ore> _oreList;
     private Coroutine _spawnRoutine;
     private float _cooldown;
     private Vector3 _position;
@@ -21,9 +21,9 @@ public class WasherDropper : MonoBehaviour
 
     }
 
-    public void SetRatList(List<Rat> ratList)
+    public void SetOreList(List<Ore> oreList)
     {
-        _ratList = ratList;
+        _oreList = oreList;
     }
 
     public void SetCooldown(float cooldown)
@@ -38,14 +38,14 @@ public class WasherDropper : MonoBehaviour
             StopCoroutine(_spawnRoutine);
             _spawnRoutine = null;
         }
-        _spawnRoutine = StartCoroutine(SpawnRats());
+        _spawnRoutine = StartCoroutine(SpawnOre());
     }
 
-    private IEnumerator SpawnRats() 
+    private IEnumerator SpawnOre() 
     {
         var wait = new WaitForSeconds(_cooldown);
 
-        foreach (var item in _ratList) 
+        foreach (var item in _oreList) 
         {
             item.transform.position = _position;
             item.gameObject.SetActive(true);

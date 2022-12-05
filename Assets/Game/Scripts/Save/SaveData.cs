@@ -9,5 +9,5 @@ public class SaveData
     public int WasherUpgradeIndex;
     //public List<Rat> RatList;
     public List<SpawnerData> SpawnerDataList;
-    public Dictionary<RatSettings.RatType, int> RatCountDictionary;
+    public Dictionary<OreSettings.OreType, int> RatCountDictionary;
 }

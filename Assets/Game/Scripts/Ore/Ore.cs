@@ -1,14 +1,14 @@
 using NTC.Global.Pool;
 using UnityEngine;
 
-public class Rat : MonoBehaviour
+public class Ore : MonoBehaviour
 {
     //[SerializeField] 
-    private RatSettings _settings;
-    private WasherStorage _washer;
+    private OreSettings _settings;
+    private RecyclingStorage _recycler;
     //private Spawner _spawner;
     private Rigidbody _rb;
-    public RatSettings Settings => _settings;
+    public OreSettings Settings => _settings;
 
 
     private void Awake()
@@ -20,11 +20,11 @@ public class Rat : MonoBehaviour
     public void Collect()
     {
         _rb.velocity = Vector3.zero;
-        _washer.AddRat(this);
+        _recycler.AddOre(this);
         //gameObject.SetActive(false);
     }
 
-    public void Wash() 
+    public void Recycle() 
     {
         _rb.velocity = Vector3.zero;
         NightPool.Despawn(this);
@@ -33,14 +33,14 @@ public class Rat : MonoBehaviour
         //_spawner.ReturnRat(this);
     }
 
-    public void SetSettings(RatSettings settings)
+    public void SetSettings(OreSettings settings)
     {
         _settings = settings;
     }
 
-    public void SetWasher(WasherStorage washer) 
+    public void SetRecycler(RecyclingStorage recycler) 
     {
-        _washer = washer;
+        _recycler = recycler;
     }
     //public void SetSpawner(Spawner spawner) 
     //{

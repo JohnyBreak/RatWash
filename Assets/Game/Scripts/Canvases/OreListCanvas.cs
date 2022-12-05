@@ -5,15 +5,15 @@ using UnityEngine.UI;
 using TMPro;
 using Zenject;
 
-public class RatListCanvas : MonoBehaviour
+public class OreListCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasHolder;
     //[SerializeField] private Image _joystickImg;
     private Button _button;
-    private WasherStorage _washer;
+    private RecyclingStorage _Recycling;
 
     [SerializeField]
-    private List<RatListElement> _ratListElements;
+    private List<OreListElement> _oreListElements;
 
     private void Awake()
     {
@@ -25,20 +25,20 @@ public class RatListCanvas : MonoBehaviour
     {
         _button.onClick.RemoveListener(OnButtonClick);
 
-        _washer.RatListChangedEvent -= UpdateElementsWhileMenuOpen;
+        _Recycling.OreListChangedEvent -= UpdateElementsWhileMenuOpen;
     }
 
     [Inject]
-    private void Constructor(WasherStorage washer)
+    private void Constructor(RecyclingStorage washer)
     {
-        _washer = washer;
-        _washer.RatListChangedEvent += UpdateElementsWhileMenuOpen;
+        _Recycling = washer;
+        _Recycling.OreListChangedEvent += UpdateElementsWhileMenuOpen;
     }
 
     private void SetListElements() 
     {
-        RatListElement tempElement;
-          var dictionary = _washer.GetRatCounts();
+        OreListElement tempElement;
+          var dictionary = _Recycling.GetOreCounts();
         foreach (var item in dictionary)
         {
 
@@ -56,9 +56,9 @@ public class RatListCanvas : MonoBehaviour
         }
     }
 
-    private RatListElement GetElement(RatSettings.RatType type) 
+    private OreListElement GetElement(OreSettings.OreType type) 
     {
-        foreach (var item in _ratListElements)
+        foreach (var item in _oreListElements)
         {
             if (item.Type == type) return item;
         }
@@ -90,8 +90,8 @@ public class RatListCanvas : MonoBehaviour
 }
 
 [System.Serializable]
-public class RatListElement 
+public class OreListElement 
 {
-    public RatSettings.RatType Type;
+    public OreSettings.OreType Type;
     public TextMeshProUGUI Text;
 }

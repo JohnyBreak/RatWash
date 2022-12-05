@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WasherSettings", menuName = "ScriptableObjects/WasherSettings", order = 1)]
-public class WasherSettings : ScriptableObject
+[CreateAssetMenu(fileName = "RecyclingSettings", menuName = "ScriptableObjects/RecyclingSettings", order = 1)]
+public class RecyclingSettings : ScriptableObject
 {
     [SerializeField] private float[] _pause;
     [SerializeField] private int[] _maxActiveDropperCount;

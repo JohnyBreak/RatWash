@@ -5,22 +5,22 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "RatSettings", menuName = "ScriptableObjects/RatSettings", order = 1)]
-public class RatSettings : ScriptableObject
+public class OreSettings : ScriptableObject
 {
-    public enum RatType 
+    public enum OreType 
     {
         classic = 0,
         big = 1,
         small = 2,
     }
 
-    [SerializeField] private RatType _type;
+    [SerializeField] private OreType _type;
     [SerializeField] private string _name;
     [SerializeField] private int _price;
-    [SerializeField] private Rat _rat;
+    [SerializeField] private Ore _rat;
 
-    public Rat Rat => _rat;
+    public Ore Rat => _rat;
     public string Name => _name;
     public int Price => _price;
-    public RatType Type => _type;
+    public OreType Type => _type;
 }
