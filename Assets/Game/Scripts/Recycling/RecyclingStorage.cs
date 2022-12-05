@@ -11,6 +11,7 @@ public class RecyclingStorage : MonoBehaviour
     public System.Action<OreSettings.OreType> RatListChangedForSaveEvent;
     [SerializeField] private RecyclingSettings _settings;
     [SerializeField] private List<Transform> _droppersList;
+    [SerializeField] private bool _collide = true;
     //[SerializeField] private List<WasherDropper> _droppers;
 
     private SaveManager _saveManager;
@@ -137,7 +138,9 @@ public class RecyclingStorage : MonoBehaviour
 
                 recycleList[0].transform.position = _droppersList[i].position;
                 recycleList[0].gameObject.SetActive(true);
-                recycleList[0].gameObject.layer = LayerMask.NameToLayer("Recycling"); ;
+
+                if(!_collide) recycleList[0].gameObject.layer = LayerMask.NameToLayer("Recycling");
+
                 recycleList.Remove(recycleList[0]);
             }
             yield return new WaitForSeconds(_pause);
