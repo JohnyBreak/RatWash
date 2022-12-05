@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3232,7 +3232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.5
-  _types: 00000000
+  _types: 01000000
 --- !u!54 &844341581
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4655,7 +4655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.5
-  _types: 0100000003000000
+  _types: 0300000004000000
 --- !u!54 &1057362924
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6603,13 +6603,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasHolder: {fileID: 816491738}
   _oreListElements:
-  - Type: 0
+  - Type: 1
     Text: {fileID: 1069414333}
   - Type: 2
     Text: {fileID: 2090208432}
-  - Type: 1
-    Text: {fileID: 283287846}
   - Type: 3
+    Text: {fileID: 283287846}
+  - Type: 4
     Text: {fileID: 1040246864}
 --- !u!1 &1458814415
 GameObject:
@@ -7030,7 +7030,7 @@ PrefabInstance:
     - target: {fileID: 7193559873003403570, guid: af532fc7ac7792241a929d6578b762fc, type: 3}
       propertyPath: _settings
       value: 
-      objectReference: {fileID: 11400000, guid: c440eab8e46ebac4aa3485c96e4b66d8, type: 2}
+      objectReference: {fileID: 11400000, guid: a995d7b471e764f4392e188de5b3d015, type: 2}
     - target: {fileID: 7193559873003403571, guid: af532fc7ac7792241a929d6578b762fc, type: 3}
       propertyPath: m_Name
       value: OreSpawner(0)
@@ -7693,6 +7693,7 @@ MonoBehaviour:
   - {fileID: 1027479152}
   - {fileID: 1795559191}
   - {fileID: 1563292500}
+  _collide: 1
 --- !u!114 &1641014354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8077,7 +8078,7 @@ PrefabInstance:
     - target: {fileID: 7193559873003403570, guid: af532fc7ac7792241a929d6578b762fc, type: 3}
       propertyPath: _settings
       value: 
-      objectReference: {fileID: 11400000, guid: c440eab8e46ebac4aa3485c96e4b66d8, type: 2}
+      objectReference: {fileID: 11400000, guid: a995d7b471e764f4392e188de5b3d015, type: 2}
     - target: {fileID: 7193559873003403571, guid: af532fc7ac7792241a929d6578b762fc, type: 3}
       propertyPath: m_Name
       value: OreSpawner(10)
