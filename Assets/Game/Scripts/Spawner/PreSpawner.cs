@@ -5,36 +5,36 @@ using UnityEngine;
 
 public class PreSpawner : MonoBehaviour
 {
-    [SerializeField] private List<PreSpawnerData> _rats;
-    private RecyclingStorage _washer;
+    [SerializeField] private List<PreSpawnerData> _ore;
+    private RecyclingStorage _recycler;
 
     [Inject]
-    private void Constructor(RecyclingStorage washer)
+    private void Constructor(RecyclingStorage recycler)
     {
-        _washer = washer;
+        _recycler = recycler;
     }
 
     public Ore GetOre(OreSettings.OreType type) 
     {
-        foreach (var rat in _rats)
+        foreach (var rat in _ore)
         {
-            if (rat.Type == type) return SpawnRat(rat.RatSettings);
+            if (rat.Type == type) return SpawnOre(rat.OreSettings);
         }
         return null;
     }
 
-    private Ore SpawnRat(OreSettings ratSettings)
+    private Ore SpawnOre(OreSettings ratSettings)
     {
-        Ore rat = NightPool.Spawn(ratSettings.Ore);
+        Ore ore = NightPool.Spawn(ratSettings.Ore);
 
-        rat.SetRecycler(_washer);
-        rat.SetSettings(ratSettings);
-        return rat;
+        ore.SetRecycler(_recycler);
+        ore.SetSettings(ratSettings);
+        return ore;
     }
 }
 [System.Serializable]
 public class PreSpawnerData 
 {
     public OreSettings.OreType Type;
-    public OreSettings RatSettings;
+    public OreSettings OreSettings;
 }

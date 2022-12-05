@@ -4406,7 +4406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -350.545}
+  m_AnchoredPosition: {x: 540, y: -490.763}
   m_SizeDelta: {x: 560.8722, y: 140.218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040246863
@@ -8305,13 +8305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68807cf42132053458c150e4eb72f26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rats:
+  _ore:
   - Type: 0
-    RatSettings: {fileID: 11400000, guid: c440eab8e46ebac4aa3485c96e4b66d8, type: 2}
+    OreSettings: {fileID: 11400000, guid: c440eab8e46ebac4aa3485c96e4b66d8, type: 2}
   - Type: 1
-    RatSettings: {fileID: 11400000, guid: 8f32f3d1ece24b44281ea7399abbbf68, type: 2}
+    OreSettings: {fileID: 11400000, guid: 8f32f3d1ece24b44281ea7399abbbf68, type: 2}
   - Type: 2
-    RatSettings: {fileID: 11400000, guid: 5a092e9f4f4f12842b3f0c8d0447409f, type: 2}
+    OreSettings: {fileID: 11400000, guid: 5a092e9f4f4f12842b3f0c8d0447409f, type: 2}
+  - Type: 3
+    OreSettings: {fileID: 11400000, guid: 1461b6b1231c18041b1e3f165f952a40, type: 2}
 --- !u!4 &1797695029
 Transform:
   m_ObjectHideFlags: 0

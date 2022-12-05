@@ -14,14 +14,14 @@ public class RecyclingStorage : MonoBehaviour
     //[SerializeField] private List<WasherDropper> _droppers;
 
     private SaveManager _saveManager;
-    private List<Ore> _ratList;
-    private List<Ore> _ratListToWash;
+    private List<Ore> _oreList;
+    private List<Ore> _oreListToRecycle;
     private Dictionary<OreSettings.OreType, int> _oreCountDictionary;
     private float _pause;
     private int _maxActiveDropperCount;
     public RecyclingSettings Settings => _settings;
 
-    private Coroutine _washRoutine;
+    private Coroutine _recycleRoutine;
     private PreSpawner _preSpawner;
 
     [Inject]
@@ -36,14 +36,14 @@ public class RecyclingStorage : MonoBehaviour
         if (_maxActiveDropperCount >= _droppersList.Count)
             _maxActiveDropperCount = _droppersList.Count;
 
-        _ratList = new List<Ore>();
-        _ratListToWash = new List<Ore>();
+        _oreList = new List<Ore>();
+        _oreListToRecycle = new List<Ore>();
 
         _saveManager.Load();
         if (_saveManager.SaveData.OreCountDictionary == null)
         {
             _oreCountDictionary = new Dictionary<OreSettings.OreType, int>();
-            ResetRatDictionary();
+            ResetOreDictionary();
             Debug.LogError("if");
         }
         else
@@ -71,7 +71,7 @@ public class RecyclingStorage : MonoBehaviour
         RatListChangedForSaveEvent -= UpdateOreCountsForSave;
     }
 
-    private void ResetRatDictionary() 
+    private void ResetOreDictionary() 
     {
         _oreCountDictionary.Clear();
         foreach (OreSettings.OreType item in Enum.GetValues(typeof(OreSettings.OreType)))
@@ -91,10 +91,10 @@ public class RecyclingStorage : MonoBehaviour
 
     public void StartRecycling()
     {
-        if (_ratList.Count < 1) return;
-        foreach (var item in _ratList)
+        if (_oreList.Count < 1) return;
+        foreach (var item in _oreList)
         {
-            _ratListToWash.Add(item);
+            _oreListToRecycle.Add(item);
         }
         /*
                 foreach (var item in _droppers)
@@ -110,40 +110,40 @@ public class RecyclingStorage : MonoBehaviour
 
 
 
-        _ratList.Clear();
+        _oreList.Clear();
 
-        ResetRatDictionary();
+        ResetOreDictionary();
 
         _saveManager.SaveData.OreCountDictionary = _oreCountDictionary;
         _saveManager.Save();
         OreListChangedEvent?.Invoke();
-        if (_washRoutine != null)
+        if (_recycleRoutine != null)
         {
-            StopCoroutine(_washRoutine);
-            _washRoutine = null;
+            StopCoroutine(_recycleRoutine);
+            _recycleRoutine = null;
         }
-        _washRoutine = StartCoroutine(WashRoutine(_ratListToWash));
+        _recycleRoutine = StartCoroutine(RecycleRoutine(_oreListToRecycle));
     }
 
-    private IEnumerator WashRoutine(List<Ore> washList)
+    private IEnumerator RecycleRoutine(List<Ore> recycleList)
     {
-        while (washList.Count > 0)
+        while (recycleList.Count > 0)
         {
             yield return null;
 
             for (int i = 0; i < _maxActiveDropperCount; i++)
             {
-                if (washList.Count < 1) break;
+                if (recycleList.Count < 1) break;
 
-                washList[0].transform.position = _droppersList[i].position;
-                washList[0].gameObject.SetActive(true);
-                washList.Remove(washList[0]);
+                recycleList[0].transform.position = _droppersList[i].position;
+                recycleList[0].gameObject.SetActive(true);
+                recycleList.Remove(recycleList[0]);
             }
             yield return new WaitForSeconds(_pause);
         }
     }
 
-    private void ChangeRatPosition(Ore ore)
+    private void ChangeOrePosition(Ore ore)
     {
         ore.transform.position = transform.position + transform.up * 2f;
         ore.gameObject.SetActive(false);
@@ -151,17 +151,17 @@ public class RecyclingStorage : MonoBehaviour
 
     public void AddOre(Ore ore)
     {
-        _ratList.Add(ore);
+        _oreList.Add(ore);
         OreListChangedEvent?.Invoke();
         RatListChangedForSaveEvent?.Invoke(ore.Settings.Type);
-        ChangeRatPosition(ore);
+        ChangeOrePosition(ore);
     }
 
     private void UpdateOreCounts()
     {
         foreach (OreSettings.OreType item in Enum.GetValues(typeof(OreSettings.OreType)))
         {
-            _oreCountDictionary[item] = _ratList.Where(x => x.Settings.Type == item).Count();
+            _oreCountDictionary[item] = _oreList.Where(x => x.Settings.Type == item).Count();
         }
 
     }
