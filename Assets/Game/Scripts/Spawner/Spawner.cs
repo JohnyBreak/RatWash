@@ -78,6 +78,7 @@ public class Spawner : MonoBehaviour
            Ore ore = NightPool.Spawn(ratSettings.Ore, _spawnPoint.position, Quaternion.identity); //Instantiate(ratSettings.Rat, _spawnPoint.position, Quaternion.identity);
 
         ore.SetRecycler(_storage);
+        ore.gameObject.layer = LayerMask.NameToLayer("Ore");
         //rat.SetSpawner(this);
         ore.SetSettings(ratSettings);
     }
