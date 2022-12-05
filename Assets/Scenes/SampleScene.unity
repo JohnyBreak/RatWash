@@ -7693,6 +7693,7 @@ MonoBehaviour:
   - {fileID: 1027479152}
   - {fileID: 1795559191}
   - {fileID: 1563292500}
+  _collide: 0
 --- !u!114 &1641014354
 MonoBehaviour:
   m_ObjectHideFlags: 0
