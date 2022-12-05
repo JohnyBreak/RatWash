@@ -12,6 +12,7 @@ public class Conveyor : MonoBehaviour
     private bool _active = false;
     private MeshRenderer _mr;
     private SpawnerUpgrader _upgrader;
+    private BoxCollider _coll;
 
     [Inject]
     private void Construct(SaveManager saveManager, SpawnerUpgrader upgrader)
@@ -23,10 +24,11 @@ public class Conveyor : MonoBehaviour
     void Start()
     {
         _upgrader.SpawnerUpgradeEvent += Init;
-
+        _coll = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
         _mr = GetComponent<MeshRenderer>();
         _mr.enabled = false;
+        _coll.enabled = false;
         Init();
     }
 
@@ -59,6 +61,7 @@ public class Conveyor : MonoBehaviour
 
     private void Activate() 
     {
+        _coll.enabled = true;
         _mr.enabled = true;
         _active = true;
     }

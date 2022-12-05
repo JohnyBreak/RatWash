@@ -9,11 +9,11 @@ public class OreSettings : ScriptableObject
 {
     public enum OreType 
     {
-        I  = 0,
-		Iron = 1,
-        Cooper  = 2,
-        Silver  = 3,
-        Gold  = 4,
+        //I  = 0,
+		Iron = 0,
+        Cooper  = 1,
+        Silver  = 2,
+        Gold  = 3,
 
     }
 
