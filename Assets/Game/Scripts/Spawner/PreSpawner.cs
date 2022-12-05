@@ -14,7 +14,7 @@ public class PreSpawner : MonoBehaviour
         _washer = washer;
     }
 
-    public Ore GetRat(OreSettings.OreType type) 
+    public Ore GetOre(OreSettings.OreType type) 
     {
         foreach (var rat in _rats)
         {
