@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a2a74100b9e7c4d82d4ffee4a1edb5, type: 3}
   m_Name: Cooper ore
   m_EditorClassIdentifier: 
-  _type: 2
+  _type: 1
   _name: Cooper
   _price: 3
   _ore: {fileID: 5001683372163422870, guid: 6873b86114bd7604e9538ae5f6999efe, type: 3}

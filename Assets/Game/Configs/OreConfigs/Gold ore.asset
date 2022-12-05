@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a2a74100b9e7c4d82d4ffee4a1edb5, type: 3}
   m_Name: Gold ore
   m_EditorClassIdentifier: 
-  _type: 4
+  _type: 3
   _name: Gold
   _price: 7
   _ore: {fileID: 5902388605669818611, guid: bc8f33e192e55a84093e7e5e25699544, type: 3}

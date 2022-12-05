@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a2a74100b9e7c4d82d4ffee4a1edb5, type: 3}
   m_Name: Silver ore
   m_EditorClassIdentifier: 
-  _type: 3
+  _type: 2
   _name: Silver
   _price: 5
   _ore: {fileID: 789979899801250197, guid: 3272608ef1589db49afdd420613f5e3b, type: 3}

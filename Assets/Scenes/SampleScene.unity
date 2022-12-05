@@ -2617,7 +2617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.5
-  _types: 02000000
+  _types: 01000000
 --- !u!54 &705451014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3232,7 +3232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.5
-  _types: 01000000
+  _types: 00000000
 --- !u!54 &844341581
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4655,7 +4655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.5
-  _types: 0300000004000000
+  _types: 0200000003000000
 --- !u!54 &1057362924
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6603,13 +6603,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasHolder: {fileID: 816491738}
   _oreListElements:
-  - Type: 1
+  - Type: 0
     Text: {fileID: 1069414333}
-  - Type: 2
+  - Type: 1
     Text: {fileID: 2090208432}
-  - Type: 3
+  - Type: 2
     Text: {fileID: 283287846}
-  - Type: 4
+  - Type: 3
     Text: {fileID: 1040246864}
 --- !u!1 &1458814415
 GameObject:
